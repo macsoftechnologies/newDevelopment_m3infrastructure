@@ -71,7 +71,8 @@
         <mat-grid-tile>
           <mat-form-field class="full-width" appearance="outline">
             <mat-label>Contractor</mat-label>
-            <mat-select formControlName="Contractor" name="Company" [disabled]="!IsNotSubCntr">
+            <!-- <mat-select formControlName="Contractor" name="Company" [disabled]="!IsNotSubCntr"> -->
+              <mat-select formControlName="Contractor" name="Company" [disabled]="!IsNotASubCntr">
               <mat-option>None</mat-option>
               <mat-option *ngFor="let loc of Contractors" [value]="loc.id">
                 {{ loc.subContractorName }}

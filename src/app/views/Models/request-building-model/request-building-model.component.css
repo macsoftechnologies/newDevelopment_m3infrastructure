@@ -102,6 +102,19 @@ mat-checkbox ::ng-deep .mat-checkbox-inner-container {
   right: -84%;
 }
 
+.gate-entrance{
+  position: absolute;
+  z-index: 9999;
+  top: 65%;
+  right: -53%;
+}
+.gate-exit{
+  position: absolute;
+  z-index: 9999;
+  top: 61%;
+  left: 43.5%;
+}
+
 .Zone-1-phus{
   position: absolute;
   z-index: 9999;
@@ -125,8 +138,8 @@ mat-checkbox ::ng-deep .mat-checkbox-inner-container {
 .Zone-4-phus{
   position: absolute;
   z-index: 9999;
-  top: 53%;
-  right: 21%;
+  top: 50%;
+  right: 33%;
 
 }
 

@@ -25,13 +25,27 @@ export class ExportExcelService {
     let worksheet = workbook.addWorksheet('Permits Data');
 
 
+    // LEFT SIDE DATA ADDED
+
+    worksheet.mergeCells('A1', 'B4');
+    let LeftTitleRow = worksheet.getCell('A1');
+    LeftTitleRow.value = "M3 INFRASTRUCTURE"
+    LeftTitleRow.font = {
+      name: 'Calibri',
+      size: 20,
+      // underline: 'single',
+      bold: true,
+      color: { argb: 'ff0000' }
+    }
+    LeftTitleRow.alignment = { vertical: 'middle', horizontal: 'center' }
+
     //Add Row and formatting
-    worksheet.mergeCells('C1', 'F4');
+    worksheet.mergeCells('C1', 'G4');
     let titleRow = worksheet.getCell('C1');
     titleRow.value = title
     titleRow.font = {
       name: 'Calibri',
-      size: 16,
+      size: 20,
       underline: 'single',
       bold: true,
       color: { argb: '0085A3' }
@@ -56,8 +70,8 @@ export class ExportExcelService {
       base64: logo.imgBase64,
       extension: 'png',
     });
-    worksheet.mergeCells('A1:B4');
-    worksheet.addImage(myLogoImage, 'A1:B4');
+    worksheet.mergeCells('H1:J4');
+    worksheet.addImage(myLogoImage, 'H1:J4');
 
     //Blank Row 
     worksheet.addRow([]);

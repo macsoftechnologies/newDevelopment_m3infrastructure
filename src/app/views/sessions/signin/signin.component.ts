@@ -68,7 +68,12 @@ export class SigninComponent implements OnInit, AfterViewInit, OnDestroy {
       this.progressBar.mode = 'determinate';
       this.errorMsg =response["message"];
       }else{
-        this.router.navigateByUrl("/sessions/verifybyotp");
+        if(response["userType"] === "Admin"){
+          // console.log("checking")
+          this.router.navigateByUrl("/sessions/verifybyotp");
+        }else{
+          this.router.navigateByUrl("/sessions/verifybyotp");
+        }
       }
       // this.router.navigateByUrl(this.return);
     }, err => {

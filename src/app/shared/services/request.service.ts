@@ -27,18 +27,13 @@ export class RequestService {
         planType: "BA-DD Zone 1 - Zone 2",
         zoneList: [
           {
-            floorName: 'ZONE 1',
+            floorName: 'BA-DD Zones',
             zoneSubList: [
               {
                 value: 'ZONE 1',
                 className: "zone-1-1-ba",
                 isSelected: false
               },
-            ]
-          },
-          {
-            floorName: 'ZONE 2',
-            zoneSubList: [
               {
                 value: 'ZONE 2',
                 className: "zone-2-1-ba",
@@ -46,25 +41,20 @@ export class RequestService {
               },
             ]
           },
-          
+
         ]
       },
       {
         planType: "EC-JCP1 Zone 1 - Zone 2",
         zoneList: [
           {
-            floorName: 'ZONE 1',
+            floorName: 'EC-JCP1 Zones',
             zoneSubList: [
               {
                 value: 'ZONE 1',
                 className: "zone-1-1-ec",
                 isSelected: false
               },
-            ]
-          },
-          {
-            floorName: 'ZONE 2',
-            zoneSubList: [
               {
                 value: 'ZONE 2',
                 className: "zone-2-1-ec",
@@ -72,7 +62,7 @@ export class RequestService {
               },
             ]
           },
-          
+
         ]
       },
 
@@ -80,18 +70,13 @@ export class RequestService {
         planType: "HovvejEast Zone 1 - Zone 2",
         zoneList: [
           {
-            floorName: 'ZONE 1',
+            floorName: 'HovvejEast Zones',
             zoneSubList: [
               {
                 value: 'ZONE 1',
                 className: "zone-1-1-east",
                 isSelected: false
               },
-            ]
-          },
-          {
-            floorName: 'ZONE 2',
-            zoneSubList: [
               {
                 value: 'ZONE 2',
                 className: "zone-2-1-east",
@@ -99,35 +84,30 @@ export class RequestService {
               },
             ]
           },
-          
+
         ]
       },
-      
+
       {
         planType: "HovvejWest Zone 1 - Zone 2",
         zoneList: [
           {
-            floorName: 'ZONE 1',
+            floorName: 'HovvejWest Zones',
             zoneSubList: [
               {
                 value: 'ZONE 1',
                 className: "zone-1-1-west",
                 isSelected: false
               },
-      
-            ]
-          },
-          {
-            floorName: 'ZONE 2',
-            zoneSubList: [
               {
                 value: 'ZONE 2',
                 className: "zone-2-1-west",
                 isSelected: false
               },
+
             ]
           },
-          
+
         ]
       },
 
@@ -135,60 +115,46 @@ export class RequestService {
         planType: "NN East Site-Plan",
         zoneList: [
           {
-            floorName: 'M3 North Zone 3',
+            floorName: 'NN East Zones',
             zoneSubList: [
               {
                 value: 'M3 North Zone 3',
                 className: "M3NorthZone3",
                 isSelected: false
               },
-      
-            ]
-          },
-          {
-            floorName: 'M3 South Zone 2',
-            zoneSubList: [
               {
                 value: 'M3 South Zone 2',
                 className: "M3SouthZone2",
                 isSelected: false
               },
-            ]
-          },
-
-          {
-            floorName: 'M3 South Zone 3',
-            zoneSubList: [
               {
                 value: 'M3 South Zone 3',
                 className: "M3SouthZone3",
                 isSelected: false
               },
-            ]
-          },
-
-          {
-            floorName: 'Parking area',
-            zoneSubList: [
               {
                 value: 'Parking area',
                 className: "Parkingarea",
                 isSelected: false
               },
-            ]
-          },
-
-          {
-            floorName: 'NON M3 AREA',
-            zoneSubList: [
               {
                 value: 'NON M3 AREA',
                 className: "NONM3AREA",
                 isSelected: false
               },
+              {
+                value: 'Gate/Entrance',
+                className: "gate-entrance",
+                isSelected: false
+              },
+              {
+                value: 'Gate/Exit',
+                className: "gate-exit",
+                isSelected: false
+              },
+
             ]
           },
-          
         ]
       },
 
@@ -196,38 +162,23 @@ export class RequestService {
         planType: "P-hus Site-Plan",
         zoneList: [
           {
-            floorName: 'ZONE 1',
+            floorName: 'P-hus Zones',
             zoneSubList: [
               {
                 value: 'Zone 1',
                 className: "Zone-1-phus",
                 isSelected: false
               },
-            ]
-          },
-          {
-            floorName: 'ZONE 2',
-            zoneSubList: [
               {
                 value: 'Zone 2',
                 className: "Zone-2-phus",
                 isSelected: false
               },
-            ]
-          },
-          {
-            floorName: 'ZONE 3',
-            zoneSubList: [
               {
                 value: 'Zone 3',
                 className: "Zone-3-phus",
                 isSelected: false
               },
-            ]
-          },
-          {
-            floorName: 'ZONE 4',
-            zoneSubList: [
               {
                 value: 'Zone 4',
                 className: "Zone-4-phus",
@@ -270,7 +221,7 @@ export class RequestService {
                 className: "M3-North-1",
                 isSelected: false
               },
-   
+
             ]
           },
           {
@@ -356,13 +307,13 @@ export class RequestService {
                 className: "Park-tent-8",
                 isSelected: false
               },
-      
+
             ]
           },
-          
+
         ]
       },
-  
+
 
     ]
     return this.bulidingFloorData;

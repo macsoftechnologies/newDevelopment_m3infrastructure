@@ -1872,8 +1872,8 @@ export class NewRequestComponent implements OnInit {
           this.planType = "BA-DD Zone 1 - Zone 2";
           this.pdfSrc = "assets/images/plans/BA-DD/BA.pdf";
           this.blocks = [
-            { name: "ZONE 1", pdfSrc: "assets/images/plans/BA-DD/BA.pdf", className: 'ba-zone-1', planType: 'BA-DD Zone 1 - Zone 2' },
-            { name: "ZONE 2", pdfSrc: "assets/images/plans/BA-DD/BA.pdf", className: 'ba-zone-2', planType: 'BA-DD Zone 1 - Zone 2' },
+            { name: "BA-DD Zones", pdfSrc: "assets/images/plans/BA-DD/BA.pdf", className: 'ba-zone-1', planType: 'BA-DD Zone 1 - Zone 2' },
+        
            ]
           break;
           default:
@@ -1887,8 +1887,8 @@ export class NewRequestComponent implements OnInit {
           this.planType = "EC-JCP1 Zone 1 - Zone 2";
           this.pdfSrc = "assets/images/plans/EC/EC-JCP1.pdf";
           this.blocks = [
-            { name: "ZONE 1", pdfSrc: "assets/images/plans/EC/EC-JCP1.pdf", className: 'ec-zone-1', planType: 'EC-JCP1 Zone 1 - Zone 2' },
-            { name: "ZONE 2", pdfSrc: "assets/images/plans/EC/EC-JCP1.pdf", className: 'ec-zone-2', planType: 'EC-JCP1 Zone 1 - Zone 2' },
+            { name: "EC-JCP1 Zones", pdfSrc: "assets/images/plans/EC/EC-JCP1.pdf", className: 'ec-zone-1', planType: 'EC-JCP1 Zone 1 - Zone 2' },
+     
            ]
           break;
           default:
@@ -1902,8 +1902,8 @@ export class NewRequestComponent implements OnInit {
           this.planType = "HovvejEast Zone 1 - Zone 2";
           this.pdfSrc = "assets/images/plans/HovvejEast/HovvejEast.pdf";
           this.blocks = [
-            { name: "ZONE 1", pdfSrc: "assets/images/plans/HovvejEast/HovvejEast.pdf", className: 'east-zone-1', planType: 'HovvejEast Zone 1 - Zone 2' },
-            { name: "ZONE 2", pdfSrc: "assets/images/plans/HovvejEast/HovvejEast.pdf", className: 'east-zone-2', planType: 'HovvejEast Zone 1 - Zone 2' },
+            { name: "HovvejEast Zones", pdfSrc: "assets/images/plans/HovvejEast/HovvejEast.pdf", className: 'east-zone-1', planType: 'HovvejEast Zone 1 - Zone 2' },
+
            ]
           break;
           default:
@@ -1917,8 +1917,8 @@ export class NewRequestComponent implements OnInit {
           this.planType = "HovvejWest Zone 1 - Zone 2";
           this.pdfSrc = "assets/images/plans/HovvejWest/HovvejWest.pdf";
           this.blocks = [
-            { name: "ZONE 1", pdfSrc: "assets/images/plans/HovvejWest/HovvejWest.pdf", className: 'west-zone-1', planType: 'HovvejWest Zone 1 - Zone 2' },
-            { name: "ZONE 2", pdfSrc: "assets/images/plans/HovvejWest/HovvejWest.pdf", className: 'west-zone-2', planType: 'HovvejWest Zone 1 - Zone 2' },
+            { name: "HovvejWest Zones", pdfSrc: "assets/images/plans/HovvejWest/HovvejWest.pdf", className: 'west-zone-1', planType: 'HovvejWest Zone 1 - Zone 2' },
+
            ]
           break;
           default:
@@ -1932,11 +1932,8 @@ export class NewRequestComponent implements OnInit {
           this.planType = "NN East Site-Plan";
           this.pdfSrc = "assets/images/plans/NN-East/NN-East.pdf";
           this.blocks = [
-            { name: "M3 North Zone 3", pdfSrc: "assets/images/plans/NN-East/NN-East.pdf", className: 'nn-east-zone-1', planType: 'NN East Site-Plan' },
-            { name: "M3 South Zone 2", pdfSrc: "assets/images/plans/NN-East/NN-East.pdf", className: 'nn-east-zone-2', planType: 'NN East Site-Plan' },
-            { name: "M3 South Zone 3", pdfSrc: "assets/images/plans/NN-East/NN-East.pdf", className: 'nn-east-zone-3', planType: 'NN East Site-Plan' },
-            { name: "Parking area", pdfSrc: "assets/images/plans/NN-East/NN-East.pdf", className: 'nn-east-zone-4', planType: 'NN East Site-Plan' },
-            { name: "NON M3 AREA", pdfSrc: "assets/images/plans/NN-East/NN-East.pdf", className: 'nn-east-zone-5', planType: 'NN East Site-Plan' },
+            { name: "NN East Zones", pdfSrc: "assets/images/plans/NN-East/NN-East.pdf", className: 'nn-east-zone-1', planType: 'NN East Site-Plan' },
+
             // { name: "Gate entrance", pdfSrc: "assets/images/plans/NN-East/NN-East.pdf", className: 'nn-east-zone-6', planType: 'NN East Site-Plan' },
            ]
           break;
@@ -1951,10 +1948,8 @@ export class NewRequestComponent implements OnInit {
           this.planType = "P-hus Site-Plan";
           this.pdfSrc = "assets/images/plans/P-hus/P-hus.pdf";
           this.blocks = [
-            { name: "Zone 1", pdfSrc: "assets/images/plans/P-hus/P-hus.pdf", className: 'P-hus-zone-1', planType: 'P-hus Site-Plan' },
-            { name: "Zone 2", pdfSrc: "assets/images/plans/P-hus/P-hus.pdf", className: 'P-hus-zone-2', planType: 'P-hus Site-Plan' },
-            { name: "Zone 3", pdfSrc: "assets/images/plans/P-hus/P-hus.pdf", className: 'P-hus-zone-3', planType: 'P-hus Site-Plan' },
-            { name: "Zone 4", pdfSrc: "assets/images/plans/P-hus/P-hus.pdf", className: 'P-hus-zone-4', planType: 'P-hus Site-Plan' },
+            { name: "P-hus Zones", pdfSrc: "assets/images/plans/P-hus/P-hus.pdf", className: 'P-hus-zone-1', planType: 'P-hus Site-Plan' },
+        
 
            ]
           break;

@@ -67,7 +67,7 @@ export class JwtAuthService {
             typeId:res["typeId"]
           };
           this.DEMO_USER=user;
-          this.JWT_TOKEN=res["id"]
+          this.JWT_TOKEN=res["userType"]
           this.setUserAndToken(user, !!res);
           this.signingIn = false;
           return res;

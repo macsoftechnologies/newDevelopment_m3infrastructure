@@ -203,7 +203,7 @@ export class PlansComponent implements OnInit {
     var dow = simple.getDay();
     var ISOweekStart = simple;
     if (dow <= 7) {
-      this.ListWeeks.push(this.datePipe.transform(ISOweekStart.setDate(simple.getDate() - simple.getDay() + 1), 'yyyy/MM/dd') + "  -  " + this.datePipe.transform(ISOweekStart.setDate(simple.getDate() + 7 - simple.getDay()), 'yyyy/MM/dd') + ` ${w}` );
+      this.ListWeeks.push(this.datePipe.transform(ISOweekStart.setDate(simple.getDate() - simple.getDay() + 1), 'yyyy/MM/dd') + "  -  " + this.datePipe.transform(ISOweekStart.setDate(simple.getDate() + 7 - simple.getDay()), 'yyyy/MM/dd') + "  -  " + `${w}` );
       // console.log(this.datePipe.transform(ISOweekStart.setDate(simple.getDate() - simple.getDay() + 1), 'yyyy-MM-dd'));
       // console.log(this.datePipe.transform(ISOweekStart.setDate(simple.getDate() + 7 - simple.getDay()), 'yyyy-MM-dd'));
     }
@@ -484,11 +484,17 @@ export class PlansComponent implements OnInit {
     this.Planslist.forEach(x=>
       {
         var day=new Date(x["Working_Date"]).getDay();
+        // this.DownloadExcelData.push(
+        //   {Company_Name:x["Company_Name"],subContractorName:x["subContractorName"],Level:x["Room_Type"],
+        //   Building_Name:x["building_name"],Activity:x["Activity"],PermitNo:x["PermitNo"],
+        //   Start_Time:x["Start_Time"],End_Time:x["End_Time"],Request_status:x["Request_status"],
+        //   Notes:x["Notes"],Working_Date:x["Working_Date"],Day:this.days_Names[day]}
+        // )
         this.DownloadExcelData.push(
-          {Company_Name:x["Company_Name"],subContractorName:x["subContractorName"],Level:x["Room_Type"],
-          Building_Name:x["building_name"],Activity:x["Activity"],PermitNo:x["PermitNo"],
+          {PermitNo:x["PermitNo"],ContractorName:x["subContractorName"],sub_Contractor_Name: x['subContractorName'],Building_Name:x["building_name"],Level:x["Room_Type"],
+          Room_Nos:x['Room_Nos'],Activity:x["Activity"],
           Start_Time:x["Start_Time"],End_Time:x["End_Time"],Request_status:x["Request_status"],
-          Notes:x["Notes"],Working_Date:x["Working_Date"],Day:this.days_Names[day]}
+          Notes:x["Notes"],Working_Date:x["Working_Date"],Day:this.days_Names[day], }
         )
       });
 
@@ -497,7 +503,7 @@ export class PlansComponent implements OnInit {
     });
 
     let reportData = {
-      title: 'Permits Data',
+      title: 'PERMIT CO-ORDINATION SHEET',
       data: this.dataForExcel,
       headers: Object.keys(this.DownloadExcelData[0])
     }
