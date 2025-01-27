@@ -141,12 +141,12 @@ export class RequestBuildingModelComponent implements OnInit {
           isSelected: false
         },
         {
-          value: 'Gate/Entrance',
+          value: 'Gate Entrance',
           className: "gate-entrance",
           isSelected: false
         },
         {
-          value: 'Gate/Exit',
+          value: 'Gate Exit',
           className: "gate-exit",
           isSelected: false
         },
@@ -253,7 +253,7 @@ export class RequestBuildingModelComponent implements OnInit {
     else if (this.data.floor.name == 'Office & Welfare cabin area' && this.data.floor.planType == 'Rendsborg Park') {
       this.floorBlock = [
         {
-          value: 'Office & Welfare cabin area',
+          value: 'Office and Welfare cabin area',
           className: "Office-Welfare",
           isSelected: false
         },
@@ -370,7 +370,67 @@ export class RequestBuildingModelComponent implements OnInit {
       }
     }
 
+    // end rendsborg park
 
+    // start eh lake east
+
+    else if (this.data.floor.name == 'EHLakeEast Zones' && this.data.floor.planType == 'EH Lake East') {
+      this.floorBlock = [
+        {
+          value: 'Zone 1',
+          className: "Zone-1-EHLakeEast",
+          isSelected: false
+        },
+        {
+          value: 'Zone 2',
+          className: "Zone-2-EHLakeEast",
+          isSelected: false
+        },
+       
+
+      ]
+      if (selectedBlockData) {
+        if ((selectedBlockData.floorName == this.data.floor.name) && (selectedBlockData.planType == this.data.floor.planType)) {
+          console.log(selectedBlockData, "2")
+          this.floorBlock = selectedBlockData.selectedBlock;
+        }
+      }
+    }
+
+    // ends eh lake east
+
+        // start eh lake west
+
+        else if (this.data.floor.name == 'EHLakeWest Zones' && this.data.floor.planType == 'EH Lake West') {
+          this.floorBlock = [
+            {
+              value: 'Zone 1',
+              className: "Zone-1-EHLakeWest",
+              isSelected: false
+            },
+            {
+              value: 'Zone 2',
+              className: "Zone-2-EHLakeWest",
+              isSelected: false
+            },
+            {
+              value: 'Zone 3',
+              className: "Zone-3-EHLakeWest",
+              isSelected: false
+            },
+           
+    
+          ]
+          if (selectedBlockData) {
+            if ((selectedBlockData.floorName == this.data.floor.name) && (selectedBlockData.planType == this.data.floor.planType)) {
+              console.log(selectedBlockData, "2")
+              this.floorBlock = selectedBlockData.selectedBlock;
+            }
+          }
+        }
+    
+        // ends eh lake west
+    
 
     // console.log(this.data);
   }

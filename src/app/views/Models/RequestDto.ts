@@ -152,6 +152,7 @@ export class RequestDto {
     // segragated_demarkated: any;
     system_drained: any;
     excavation_shoring: any;
+    createdTime: any;
 }
 
 

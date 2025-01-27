@@ -63,3 +63,19 @@
 .main-section .ng2-pdf-viewer-container {
     overflow-x: inherit !important;
 }
+
+.egret-navy .mat-chip.mat-standard-chip.status_draft{
+    background-color: yellow !important;
+}
+.egret-navy .mat-chip.mat-standard-chip.status_closed{
+    background-color: red !important;
+}
+.egret-navy .mat-chip.mat-standard-chip.status_approved{
+    background-color: green !important;
+}
+.egret-navy .mat-chip.mat-standard-chip.status_opened{
+    background-color: greenyellow !important;
+}
+.egret-navy .mat-chip.mat-standard-chip.status_hold{
+    background-color: orange !important;
+}

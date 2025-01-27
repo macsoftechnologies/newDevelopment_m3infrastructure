@@ -24,6 +24,7 @@ export class SigninComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private _unsubscribeAll: Subject<any>;
   userType: any;
+  secretKey: any;
 
   constructor(
     private jwtAuth: JwtAuthService,
@@ -62,6 +63,7 @@ export class SigninComponent implements OnInit, AfterViewInit, OnDestroy {
     this.jwtAuth.signin(signinData.username, signinData.password)
     .subscribe(response => {
       this.userType = localStorage.setItem('UserType', response?.userType);
+      this.secretKey = localStorage.setItem('secretkey', 'm3infrastructure');
       if(response["status"]==false)
       {
         this.submitButton.disabled = false;

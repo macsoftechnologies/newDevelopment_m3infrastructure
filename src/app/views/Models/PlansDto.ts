@@ -10,6 +10,8 @@ export class PlansDto
 
    // Plans_Id:number;
     Building_Id:number;
-   // fromDate:string;
-   // toDate:string;
+    from_date:string;
+    to_date:string;
+    start_time:string;
+    end_time:string;
 }

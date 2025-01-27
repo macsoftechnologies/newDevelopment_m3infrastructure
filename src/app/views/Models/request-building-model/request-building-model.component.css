@@ -42,9 +42,9 @@ mat-checkbox ::ng-deep .mat-checkbox-inner-container {
 
 .zone-1-1-east {
   position: absolute;
-    z-index: 9999;
-    bottom: 34%;
-    right: 34%;
+  z-index: 9999;
+  bottom: 34%;
+  right: 34%;
 }
 
 .zone-2-1-east {
@@ -69,52 +69,823 @@ mat-checkbox ::ng-deep .mat-checkbox-inner-container {
   right: 11%;
 }
 
-.M3NorthZone3{
+.M3NorthZone3 {
   position: absolute;
   z-index: 9999;
   top: 26%;
   right: 9%;
 }
-.M3SouthZone2{
+
+.M3SouthZone2 {
   position: absolute;
   z-index: 9999;
   top: 37%;
   right: 4%;
 
 }
-.M3SouthZone3{
+
+.M3SouthZone3 {
   position: absolute;
   z-index: 9999;
   top: 57%;
   right: 9%;
 
 }
-.Parkingarea{
+
+.Parkingarea {
   position: absolute;
   z-index: 9999;
   top: 57%;
   left: 26%;
 }
-.NONM3AREA{
+
+.NONM3AREA {
   position: absolute;
   z-index: 9999;
   top: 57%;
   right: -84%;
 }
 
-.gate-entrance{
+.gate-entrance {
   position: absolute;
   z-index: 9999;
   top: 65%;
   right: -53%;
 }
-.gate-exit{
+
+.gate-exit {
   position: absolute;
   z-index: 9999;
   top: 61%;
   left: 43.5%;
 }
 
+.Zone-1-phus {
+  position: absolute;
+  z-index: 9999;
+  top: 45%;
+  left: 27%;
+}
+
+.Zone-2-phus {
+
+  position: absolute;
+  z-index: 9999;
+  top: 55%;
+  right: 23%;
+
+}
+
+.Zone-3-phus {
+  position: absolute;
+  z-index: 9999;
+  top: 65%;
+  right: -12%;
+}
+
+.Zone-4-phus {
+  position: absolute;
+  z-index: 9999;
+  top: 50%;
+  right: 33%;
+
+}
+
+.M3-North-2 {
+  position: absolute;
+  z-index: 9999;
+  bottom: 22%;
+  left: 21%;
+}
+
+.M3-South-2 {
+  position: absolute;
+  z-index: 9999;
+  bottom: 32%;
+  left: 31%;
+}
+
+.M3-North-1 {
+  position: absolute;
+  z-index: 9999;
+  bottom: 32%;
+  left: 43%;
+}
+
+.Office-Welfare {
+  position: absolute;
+  z-index: 9999;
+  bottom: 32%;
+  left: 53%;
+}
+
+.Parking-1 {
+  position: absolute;
+  z-index: 9999;
+  top: 32%;
+  right: 35%;
+}
+
+.Parking-2 {
+  position: absolute;
+  z-index: 9999;
+  top: 50%;
+  right: 40%;
+}
+
+.Parking-3 {
+  position: absolute;
+  z-index: 9999;
+  top: 50%;
+  right: 26%;
+}
+
+.Park-tent-1 {
+  position: absolute;
+  z-index: 9999;
+  top: 5%;
+  left: 6%;
+}
+
+.Park-tent-2 {
+  position: absolute;
+  z-index: 9999;
+  top: 5%;
+  left: 31%;
+}
+
+.Park-tent-3 {
+  position: absolute;
+  z-index: 9999;
+  top: 5%;
+  right: 30%;
+}
+
+.Park-tent-4 {
+  position: absolute;
+  z-index: 9999;
+  top: 5%;
+  right: 7%;
+}
+
+.Park-tent-5 {
+  position: absolute;
+  z-index: 9999;
+  bottom: 5%;
+  left: 6%;
+}
+
+.Park-tent-6 {
+  position: absolute;
+  z-index: 9999;
+  bottom: 5%;
+  left: 31%;
+}
+
+.Park-tent-7 {
+  position: absolute;
+  z-index: 9999;
+  bottom: 5%;
+  right: 31%;
+}
+
+.Park-tent-8 {
+  position: absolute;
+  z-index: 9999;
+  bottom: 5%;
+  right: 7%;
+}
+
+.Zone-1-EHLakeEast {
+  position: absolute;
+  z-index: 9999;
+  bottom: 29%;
+  left: 51%;
+}
+
+.Zone-2-EHLakeEast {
+  position: absolute;
+  z-index: 9999;
+  bottom: 14%;
+  left: 56%;
+}
+.Zone-1-EHLakeWest{
+  position: absolute;
+  z-index: 9999;
+  top: 16%;
+  left: 45%;
+}
+.Zone-2-EHLakeWest{
+  position: absolute;
+  z-index: 9999;
+  top: 40%;
+  right: 24%;
+}
+.Zone-3-EHLakeWest{
+  position: absolute;
+  z-index: 9999;
+  top: 48%;
+  left: 43%;
+}
+
+
+/* start Responsive for checkboxs EH Lake West  */
+
+@media (min-width: 992px) and (max-width: 1100px) {
+
+  .Zone-1-EHLakeWest{
+    position: absolute;
+    z-index: 9999;
+    top: 19%;
+    left: 53%;
+  }
+  .Zone-2-EHLakeWest{
+    position: absolute;
+    z-index: 9999;
+    top: 34%;
+    right: -6%;
+  }
+  .Zone-3-EHLakeWest{
+    position: absolute;
+    z-index: 9999;
+    top: 45%;
+    left: 59%;
+  }
+}
+
+@media (min-width: 1100px) and (max-width: 1200px) {
+
+  .Zone-1-EHLakeWest{
+    position: absolute;
+    z-index: 9999;
+    top: 19%;
+    left: 50%;
+  }
+  .Zone-2-EHLakeWest{
+    position: absolute;
+    z-index: 9999;
+    top: 34%;
+    right: 2%;
+  }
+  .Zone-3-EHLakeWest{
+    position: absolute;
+    z-index: 9999;
+    top: 45%;
+    left: 56%;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1300px) {
+
+  .Zone-1-EHLakeWest{
+    position: absolute;
+    z-index: 9999;
+    top: 19%;
+    left: 45%;
+  }
+  .Zone-2-EHLakeWest{
+    position: absolute;
+    z-index: 9999;
+    top: 34%;
+    right: 10%;
+  }
+  .Zone-3-EHLakeWest{
+    position: absolute;
+    z-index: 9999;
+    top: 45%;
+    left: 51%;
+  }
+}
+
+@media (min-width: 1300px) and (max-width: 1400px) {
+
+  .Zone-1-EHLakeWest{
+    position: absolute;
+    z-index: 9999;
+    top: 19%;
+    left: 45%;
+  }
+  .Zone-2-EHLakeWest{
+    position: absolute;
+    z-index: 9999;
+    top: 34%;
+    right: 17%;
+  }
+  .Zone-3-EHLakeWest{
+    position: absolute;
+    z-index: 9999;
+    top: 45%;
+    left: 51%;
+  }
+}
+
+@media (min-width: 1400px) and (max-width: 1450px) {
+
+  .Zone-1-EHLakeWest{
+    position: absolute;
+    z-index: 9999;
+    top: 19%;
+    left: 40%;
+  }
+  .Zone-2-EHLakeWest{
+    position: absolute;
+    z-index: 9999;
+    top: 35%;
+    right: 24%;
+  }
+  .Zone-3-EHLakeWest{
+    position: absolute;
+    z-index: 9999;
+    top: 45%;
+    left: 46%;
+  }
+}
+
+/* end Responsive for checkboxs EH Lake West  */
+
+
+/* start Responsive for checkboxs EH Lake East  */
+
+@media (min-width: 992px) and (max-width: 1100px) {
+  .Zone-1-EHLakeEast{
+    position: absolute;
+    z-index: 9999;
+    bottom: 35%;
+    left: 68%;
+  }
+  .Zone-2-EHLakeEast{
+    position: absolute;
+    z-index: 9999;
+    bottom: 19%;
+    left: 78%;
+ }
+
+}
+
+@media (min-width: 1100px) and (max-width: 1200px) {
+  .Zone-1-EHLakeEast{
+    position: absolute;
+    z-index: 9999;
+    bottom: 35%;
+    left: 63%;
+  }
+  .Zone-2-EHLakeEast{
+    position: absolute;
+    z-index: 9999;
+    bottom: 19%;
+    left: 73%;
+ }
+
+}
+
+@media (min-width: 1200px) and (max-width: 1300px) {
+  .Zone-1-EHLakeEast{
+    position: absolute;
+    z-index: 9999;
+    bottom: 35%;
+    left: 58%;
+  }
+  .Zone-2-EHLakeEast{
+    position: absolute;
+    z-index: 9999;
+    bottom: 19%;
+    left: 67%;
+ }
+
+}
+
+@media (min-width: 1300px) and (max-width: 1400px) {
+  .Zone-1-EHLakeEast{
+    position: absolute;
+    z-index: 9999;
+    bottom: 35%;
+    left: 52%;
+  }
+  .Zone-2-EHLakeEast{
+    position: absolute;
+    z-index: 9999;
+    bottom: 19%;
+    left: 61%;
+ }
+
+}
+
+@media (min-width: 1400px) and (max-width: 1450px) {
+  .Zone-1-EHLakeEast{
+    position: absolute;
+    z-index: 9999;
+    bottom: 34%;
+    left: 49%;
+  }
+  .Zone-2-EHLakeEast{
+    position: absolute;
+    z-index: 9999;
+    bottom: 19%;
+    left: 58%;
+ }
+
+}
+
+/* end Responsive for checkboxs EH Lake East  */
+
+/* / start Responsive for checkboxs Rendsborg-Park css  / */
+
+@media (min-width: 992px) and (max-width: 1100px) {
+
+.M3-North-2{
+  position: absolute;
+  z-index: 9999;
+  bottom: 22%;
+  left: 21%;
+}
+
+.M3-South-2{
+  position: absolute;
+  z-index: 9999;
+  bottom: 32%;
+  left: 41%;
+}
+
+.M3-North-1{
+  position: absolute;
+  z-index: 9999;
+  bottom: 32%;
+  left: 57%;
+}
+
+.Office-Welfare{
+  position: absolute;
+  z-index: 9999;
+  bottom: 30%;
+  left: 69%;
+}
+
+.Parking-1{
+  position: absolute;
+  z-index: 9999;
+  top: 32%;
+  right: 16%;
+}
+
+.Parking-2{
+  position: absolute;
+  z-index: 9999;
+  top: 50%;
+  right: 21%;
+}
+.Parking-3{
+  position: absolute;
+  z-index: 9999;
+  top: 53%;
+  right: 2%;
+}
+}
+
+@media (min-width: 1100px) and (max-width: 1200px) {
+
+  .M3-North-2{
+    position: absolute;
+    z-index: 9999;
+    bottom: 22%;
+    left: 21%;
+  }
+  
+  .M3-South-2{
+    position: absolute;
+    z-index: 9999;
+    bottom: 32%;
+    left: 37%;
+  }
+  
+  .M3-North-1{
+    position: absolute;
+    z-index: 9999;
+    bottom: 32%;
+    left: 52%;
+  }
+  
+  .Office-Welfare{
+    position: absolute;
+    z-index: 9999;
+    bottom: 30%;
+    left: 64%;
+  }
+  
+  .Parking-1{
+    position: absolute;
+    z-index: 9999;
+    top: 33%;
+    right: 24%;
+  }
+  .Parking-2{
+    position: absolute;
+    z-index: 9999;
+    top: 50%;
+    right: 26%;
+  }
+  .Parking-3{
+    position: absolute;
+    z-index: 9999;
+    top: 53%;
+    right: 10%;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1300px) {
+
+  .M3-North-2{
+    position: absolute;
+    z-index: 9999;
+    bottom: 22%;
+    left: 17%;
+  }
+  
+  .M3-South-2{
+    position: absolute;
+    z-index: 9999;
+    bottom: 32%;
+    left: 34%;
+  }
+  
+  .M3-North-1{
+    position: absolute;
+    z-index: 9999;
+    bottom: 32%;
+    left: 48%;
+  }
+  .Office-Welfare{
+    position: absolute;
+    z-index: 9999;
+    bottom: 30%;
+    left: 59%;
+  }
+  .Parking-1{
+    position: absolute;
+    z-index: 9999;
+    top: 34%;
+    right: 32%;
+  }
+  .Parking-2{
+    position: absolute;
+    z-index: 9999;
+    top: 52%;
+    right: 34%;
+  }
+  .Parking-3{
+    position: absolute;
+    z-index: 9999;
+    top: 54%;
+    right: 18%;
+  }
+}
+
+@media (min-width: 1300px) and (max-width: 1400px) {
+
+  .M3-North-2{
+    position: absolute;
+    z-index: 9999;
+    bottom: 22%;
+    left: 17%;
+  }
+  
+  .M3-South-2{
+    position: absolute;
+    z-index: 9999;
+    bottom: 32%;
+    left: 34%;
+  }
+  
+  .M3-North-1{
+    position: absolute;
+    z-index: 9999;
+    bottom: 32%;
+    left: 44%;
+  }
+  .Office-Welfare{
+    position: absolute;
+    z-index: 9999;
+    bottom: 30%;
+    left: 56%;
+  }
+  .Parking-1{
+    position: absolute;
+    z-index: 9999;
+    top: 34%;
+    right: 36%;
+  }
+  .Parking-2{
+    position: absolute;
+    z-index: 9999;
+    top: 52%;
+    right: 39%;
+  }
+  .Parking-3{
+    position: absolute;
+    z-index: 9999;
+    top: 54%;
+    right: 23%;
+  }
+}
+
+@media (min-width: 1400px) and (max-width: 1500px) {
+
+  .M3-North-2{
+    position: absolute;
+    z-index: 9999;
+    bottom: 22%;
+    left: 17%;
+  }
+  
+  .M3-South-2{
+    position: absolute;
+    z-index: 9999;
+    bottom: 32%;
+    left: 34%;
+  }
+  
+  .M3-North-1{
+    position: absolute;
+    z-index: 9999;
+    bottom: 32%;
+    left: 44%;
+  }
+  .Office-Welfare{
+    position: absolute;
+    z-index: 9999;
+    bottom: 30%;
+    left: 56%;
+  }
+  .Parking-1{
+    position: absolute;
+    z-index: 9999;
+    top: 34%;
+    right: 36%;
+  }
+  .Parking-2{
+    position: absolute;
+    z-index: 9999;
+    top: 52%;
+    right: 39%;
+  }
+  .Parking-3{
+    position: absolute;
+    z-index: 9999;
+    top: 54%;
+    right: 23%;
+  }
+}
+
+/* / end Responsive for checkboxs Rendsborg-Park css  / */
+
+/* start Responsive for checkboxs P-Hus css  */
+
+@media (min-width: 992px) and (max-width: 1100px) {
+  
+.Zone-1-phus{
+  position: absolute;
+  z-index: 9999;
+  top: 45%;
+  left: 43%;
+}
+.Zone-2-phus{
+  position: absolute;
+  z-index: 9999;
+  top: 55%;
+  right: -1%;
+}
+.Zone-3-phus{
+  position: absolute;
+  z-index: 9999;
+  top: 65%;
+  right: -67%;
+}
+.Zone-4-phus{
+  position: absolute;
+  z-index: 9999;
+  top: 51%;
+  right: -1%;
+}
+
+}
+
+@media (min-width: 1100px) and (max-width: 1200px) {
+  
+  .Zone-1-phus{
+    position: absolute;
+    z-index: 9999;
+    top: 45%;
+    left: 38%;
+  }
+  .Zone-2-phus{
+    position: absolute;
+    z-index: 9999;
+    top: 55%;
+    right: 7%;
+  }
+  .Zone-3-phus{
+    position: absolute;
+    z-index: 9999;
+    top: 65%;
+    right: -55%;
+  }
+  .Zone-4-phus{
+    position: absolute;
+    z-index: 9999;
+    top: 51%;
+    right: 5%;
+  }
+  
+}
+
+@media (min-width: 1200px) and (max-width: 1300px) {
+  
+  .Zone-1-phus{
+    position: absolute;
+    z-index: 9999;
+    top: 45%;
+    left: 35%;
+  }
+  .Zone-2-phus{
+    position: absolute;
+    z-index: 9999;
+    top: 55%;
+    right: 14%;
+  }
+  .Zone-3-phus{
+    position: absolute;
+    z-index: 9999;
+    top: 65%;
+    right: -41%;
+  }
+  .Zone-4-phus{
+    position: absolute;
+    z-index: 9999;
+    top: 51%;
+    right: 13%;
+  }
+  
+}
+
+@media (min-width: 1300px) and (max-width: 1400px) {
+  
+  .Zone-1-phus{
+    position: absolute;
+    z-index: 9999;
+    top: 45%;
+    left: 35%;
+  }
+  .Zone-2-phus{
+    position: absolute;
+    z-index: 9999;
+    top: 55%;
+    right: 19%;
+  }
+  .Zone-3-phus{
+    position: absolute;
+    z-index: 9999;
+    top: 65%;
+    right: -31%;
+  }
+  .Zone-4-phus{
+    position: absolute;
+    z-index: 9999;
+    top: 51%;
+    right: 19%;
+  }
+  
+}
+
+@media (min-width: 1400px) and (max-width: 1550px) {
+  
+  .Zone-1-phus{
+    position: absolute;
+    z-index: 9999;
+    top: 45%;
+    left: 33%;
+  }
+  .Zone-2-phus{
+    position: absolute;
+    z-index: 9999;
+    top: 55%;
+    right: 28%;
+  }
+  .Zone-3-phus{
+    position: absolute;
+    z-index: 9999;
+    top: 65%;
+    right: -19%;
+  }
+  .Zone-4-phus{
+    position: absolute;
+    z-index: 9999;
+    top: 51%;
+    right: 26%;
+  }
+  
+}
+
+@media (min-width: 1550px) and (max-width: 1650px) {
+  
 .Zone-1-phus{
   position: absolute;
   z-index: 9999;
@@ -122,12 +893,10 @@ mat-checkbox ::ng-deep .mat-checkbox-inner-container {
   left: 27%;
 }
 .Zone-2-phus{
-
   position: absolute;
   z-index: 9999;
   top: 55%;
-  right: 23%;
-  
+  right: 33%;
 }
 .Zone-3-phus{
   position: absolute;
@@ -142,104 +911,1208 @@ mat-checkbox ::ng-deep .mat-checkbox-inner-container {
   right: 33%;
 
 }
-
-.M3-North-2{
-  position: absolute;
-  z-index: 9999;
-  bottom: 22%;
-  left: 21%;
 }
 
-.M3-South-2{
-  position: absolute;
-  z-index: 9999;
-  bottom: 32%;
-  left: 31%;
+@media (min-width: 1650px) and (max-width: 1750px) {
+  
+  .Zone-1-phus{
+    position: absolute;
+    z-index: 9999;
+    top: 45%;
+    left: 27%;
+  }
+  .Zone-2-phus{
+    position: absolute;
+    z-index: 9999;
+    top: 55%;
+    right: 35%;
+  }
+  .Zone-3-phus{
+    position: absolute;
+    z-index: 9999;
+    top: 65%;
+    right: -5%;
+  }
+  .Zone-4-phus{
+    position: absolute;
+    z-index: 9999;
+    top: 50%;
+    right: 35%;
+  
+  }
 }
 
-.M3-North-1{
-  position: absolute;
-  z-index: 9999;
-  bottom: 32%;
-  left: 43%;
+@media (min-width: 1750px) and (max-width: 1850px) {
+  
+  .Zone-1-phus{
+    position: absolute;
+    z-index: 9999;
+    top: 45%;
+    left: 27%;
+  }
+  .Zone-2-phus{
+    position: absolute;
+    z-index: 9999;
+    top: 55%;
+    right: 39%;
+  }
+  .Zone-3-phus{
+    position: absolute;
+    z-index: 9999;
+    top: 65%;
+    right: 4%;
+  }
+  .Zone-4-phus{
+    position: absolute;
+    z-index: 9999;
+    top: 50%;
+    right: 39%;
+  
+  }
 }
 
-.Office-Welfare{
-  position: absolute;
-  z-index: 9999;
-  bottom: 32%;
-  left: 53%;
+@media (min-width: 1850px) and (max-width: 1950px) {
+  
+  .Zone-1-phus{
+    position: absolute;
+    z-index: 9999;
+    top: 45%;
+    left: 27%;
+  }
+  .Zone-2-phus{
+    position: absolute;
+    z-index: 9999;
+    top: 55%;
+    right: 43%;
+  }
+  .Zone-3-phus{
+    position: absolute;
+    z-index: 9999;
+    top: 65%;
+    right: 8%;
+  }
+  .Zone-4-phus{
+    position: absolute;
+    z-index: 9999;
+    top: 50%;
+    right: 43%;
+  
+  }
 }
 
-.Parking-1{
-  position: absolute;
-  z-index: 9999;
-  top: 32%;
-  right: 35%;
+@media (min-width: 1950px) and (max-width: 2000px) {
+  
+  .Zone-1-phus{
+    position: absolute;
+    z-index: 9999;
+    top: 45%;
+    left: 27%;
+  }
+  .Zone-2-phus{
+    position: absolute;
+    z-index: 9999;
+    top: 55%;
+    right: 43%;
+  }
+  .Zone-3-phus{
+    position: absolute;
+    z-index: 9999;
+    top: 65%;
+    right: 8%;
+  }
+  .Zone-4-phus{
+    position: absolute;
+    z-index: 9999;
+    top: 50%;
+    right: 43%;
+  
+  }
 }
 
-.Parking-2{
-  position: absolute;
-  z-index: 9999;
-  top: 50%;
-  right: 40%;
-}
-.Parking-3{
-  position: absolute;
-  z-index: 9999;
-  top: 50%;
-  right: 26%;
+/* end Responsive for checkboxs P-Hus css  */
+
+
+
+/* start Responsive for checkboxs NN East css  */
+
+
+@media (min-width: 992px) and (max-width: 1100px) {
+ 
+  .M3NorthZone3{
+    position: absolute;
+    z-index: 9999;
+    top: 26%;
+    right: -36%;
+  }
+  .M3SouthZone2{
+    position: absolute;
+    z-index: 9999;
+    top: 38%;
+    right: -38%;
+  }
+  .M3SouthZone3{
+    position: absolute;
+    z-index: 9999;
+    top: 57%;
+    right: -35%;
+  }
+  .Parkingarea{
+    position: absolute;
+    z-index: 9999;
+    top: 54%;
+    left: 39%;
+  }
+  .NONM3AREA{
+    position: absolute;
+    z-index: 9999;
+    top: 57%;
+    right: -165%;
+  }
+  .gate-entrance{
+    position: absolute;
+    z-index: 9999;
+    top: 65%;
+    right: -124%;
+  }
+  .gate-exit{
+    position: absolute;
+    z-index: 9999;
+    top: 59%;
+    left: 63.5%;
+  }
+  
 }
 
-.Park-tent-1{
-  position: absolute;
-  z-index: 9999;
-  top: 5%;
-  left: 6%;
+@media (min-width: 1100px) and (max-width: 1200px) {
+ 
+  .M3NorthZone3{
+    position: absolute;
+    z-index: 9999;
+    top: 26%;
+    right: -36%;
+  }
+  .M3SouthZone2{
+    position: absolute;
+    z-index: 9999;
+    top: 38%;
+    right: -38%;
+  }
+  .M3SouthZone3{
+    position: absolute;
+    z-index: 9999;
+    top: 57%;
+    right: -35%;
+  }
+  .Parkingarea{
+    position: absolute;
+    z-index: 9999;
+    top: 54%;
+    left: 36%;
+  }
+  .NONM3AREA{
+    position: absolute;
+    z-index: 9999;
+    top: 57%;
+    right: -143%;
+  }
+  .gate-entrance{
+    position: absolute;
+    z-index: 9999;
+    top: 65%;
+    right: -105%;
+  }
+  .gate-exit{
+    position: absolute;
+    z-index: 9999;
+    top: 59%;
+    left: 58.5%;
+  }
+  
 }
 
-.Park-tent-2{
-  position: absolute;
-  z-index: 9999;
-  top: 5%;
-  left: 31%;
-}
-.Park-tent-3{
-  position: absolute;
-  z-index: 9999;
-  top: 5%;
-  right: 30%;
-}
-.Park-tent-4{
-  position: absolute;
-  z-index: 9999;
-  top: 5%;
-  right: 7%;
+@media (min-width: 1200px) and (max-width: 1300px) {
+ 
+  .M3NorthZone3{
+    position: absolute;
+    z-index: 9999;
+    top: 26%;
+    right: -36%;
+  }
+  .M3SouthZone2{
+    position: absolute;
+    z-index: 9999;
+    top: 38%;
+    right: -38%;
+  }
+  .M3SouthZone3{
+    position: absolute;
+    z-index: 9999;
+    top: 57%;
+    right: -26%;
+  }
+  .Parkingarea{
+    position: absolute;
+    z-index: 9999;
+    top: 54%;
+    left: 33%;
+  }
+  .NONM3AREA{
+    position: absolute;
+    z-index: 9999;
+    top: 57%;
+    right: -123%;
+  }
+  .gate-entrance{
+    position: absolute;
+    z-index: 9999;
+    top: 65%;
+    right: -87%;
+  }
+  .gate-exit{
+    position: absolute;
+    z-index: 9999;
+    top: 59%;
+    left: 52.5%;
+  }
+  
 }
 
-.Park-tent-5{
-  position: absolute;
-  z-index: 9999;
-  bottom: 5%;
-  left: 6%;
+@media (min-width: 1300px) and (max-width: 1400px) {
+ 
+  .M3NorthZone3{
+    position: absolute;
+    z-index: 9999;
+    top: 26%;
+    right: -36%;
+  }
+  .M3SouthZone2{
+    position: absolute;
+    z-index: 9999;
+    top: 38%;
+    right: -38%;
+  }
+  .M3SouthZone3{
+    position: absolute;
+    z-index: 9999;
+    top: 57%;
+    right: -26%;
+  }
+  .Parkingarea{
+    position: absolute;
+    z-index: 9999;
+    top: 54%;
+    left: 33%;
+  }
+  .NONM3AREA{
+    position: absolute;
+    z-index: 9999;
+    top: 57%;
+    right: -123%;
+  }
+  .gate-entrance{
+    position: absolute;
+    z-index: 9999;
+    top: 65%;
+    right: -87%;
+  }
+  .gate-exit{
+    position: absolute;
+    z-index: 9999;
+    top: 59%;
+    left: 52.5%;
+  }
+  
 }
 
-.Park-tent-6{
-  position: absolute;
-  z-index: 9999;
-  bottom: 5%;
-  left: 31%;
+@media (min-width: 1400px) and (max-width: 1550px) {
+ 
+  .M3NorthZone3{
+    position: absolute;
+    z-index: 9999;
+    top: 26%;
+    right: -36%;
+  }
+  .M3SouthZone2{
+    position: absolute;
+    z-index: 9999;
+    top: 38%;
+    right: -12%;
+  }
+  .M3SouthZone3{
+    position: absolute;
+    z-index: 9999;
+    top: 57%;
+    right: -13%;
+  }
+  .Parkingarea{
+    position: absolute;
+    z-index: 9999;
+    top: 54%;
+    left: 27%;
+  }
+  .NONM3AREA{
+    position: absolute;
+    z-index: 9999;
+    top: 57%;
+    right: -87%;
+  }
+  .gate-entrance{
+    position: absolute;
+    z-index: 9999;
+    top: 65%;
+    right: -56%;
+  }
+  .gate-exit{
+    position: absolute;
+    z-index: 9999;
+    top: 59%;
+    left: 44.5%;
+  }
+  
 }
 
-.Park-tent-7{
+@media (min-width: 1550px) and (max-width: 1600px) {
+
+  .M3NorthZone3{
+    position: absolute;
+    z-index: 9999;
+    top: 26%;
+    right: 9%;
+  }
+  .M3SouthZone2{
+    position: absolute;
+    z-index: 9999;
+    top: 37%;
+    right: 4%;
+  
+  }
+  .M3SouthZone3{
+    position: absolute;
+    z-index: 9999;
+    top: 57%;
+    right: 9%;
+  
+  }
+  .Parkingarea{
+    position: absolute;
+    z-index: 9999;
+    top: 57%;
+    left: 26%;
+  }
+  .NONM3AREA{
+    position: absolute;
+    z-index: 9999;
+    top: 57%;
+    right: -84%;
+  }
+  
+  .gate-entrance{
+    position: absolute;
+    z-index: 9999;
+    top: 65%;
+    right: -46%;
+  }
+  .gate-exit{
+    position: absolute;
+    z-index: 9999;
+    top: 61%;
+    left: 41.5%;
+  }
+  
+}
+
+@media (min-width: 1600px) and (max-width: 1650px) {
+
+  .M3NorthZone3{
+    position: absolute;
+    z-index: 9999;
+    top: 26%;
+    right: 9%;
+  }
+  .M3SouthZone2{
+    position: absolute;
+    z-index: 9999;
+    top: 37%;
+    right: 4%;
+  
+  }
+  .M3SouthZone3{
+    position: absolute;
+    z-index: 9999;
+    top: 57%;
+    right: 9%;
+  
+  }
+  .Parkingarea{
+    position: absolute;
+    z-index: 9999;
+    top: 57%;
+    left: 26%;
+  }
+  .NONM3AREA{
+    position: absolute;
+    z-index: 9999;
+    top: 57%;
+    right: -84%;
+  }
+  
+  .gate-entrance{
+    position: absolute;
+    z-index: 9999;
+    top: 65%;
+    right: -41%;
+  }
+  .gate-exit{
+    position: absolute;
+    z-index: 9999;
+    top: 61%;
+    left: 40.5%;
+  }
+  
+}
+
+@media (min-width: 1650px) and (max-width: 1750px) {
+
+  .M3NorthZone3{
+    position: absolute;
+    z-index: 9999;
+    top: 26%;
+    right: 9%;
+  }
+  .M3SouthZone2{
+    position: absolute;
+    z-index: 9999;
+    top: 37%;
+    right: 4%;
+  
+  }
+  .M3SouthZone3{
+    position: absolute;
+    z-index: 9999;
+    top: 57%;
+    right: 9%;
+  
+  }
+  .Parkingarea{
+    position: absolute;
+    z-index: 9999;
+    top: 57%;
+    left: 24%;
+  }
+  .NONM3AREA{
+    position: absolute;
+    z-index: 9999;
+    top: 57%;
+    right: -63%;
+  }
+  
+  .gate-entrance{
+    position: absolute;
+    z-index: 9999;
+    top: 65%;
+    right: -35%;
+  }
+  .gate-exit{
+    position: absolute;
+    z-index: 9999;
+    top: 61%;
+    left: 38.5%;
+  }
+  
+}
+
+@media (min-width: 1750px) and (max-width: 1850px) {
+
+  .M3NorthZone3{
+    position: absolute;
+    z-index: 9999;
+    top: 26%;
+    right: 9%;
+  }
+  .M3SouthZone2{
+    position: absolute;
+    z-index: 9999;
+    top: 39%;
+    right: 11%;
+
+  }
+  .M3SouthZone3{
+    position: absolute;
+    z-index: 9999;
+    top: 57%;
+    right: 13%;
+  
+  }
+  .Parkingarea{
+    position: absolute;
+    z-index: 9999;
+    top: 57%;
+    left: 22%;
+  }
+  .NONM3AREA{
+    position: absolute;
+    z-index: 9999;
+    top: 57%;
+    right: -63%;
+  }
+  
+  .gate-entrance{
+    position: absolute;
+    z-index: 9999;
+    top: 65%;
+    right: -28%;
+  }
+  .gate-exit{
+    position: absolute;
+    z-index: 9999;
+    top: 61%;
+    left: 36.5%;
+  }
+  
+}
+
+@media (min-width: 1850px) and (max-width: 1950px) {
+
+  .M3NorthZone3{
+    position: absolute;
+    z-index: 9999;
+    top: 26%;
+    right: 9%;
+  }
+  .M3SouthZone2{
+    position: absolute;
+    z-index: 9999;
+    top: 39%;
+    right: 11%;
+
+  }
+  .M3SouthZone3{
+    position: absolute;
+    z-index: 9999;
+    top: 57%;
+    right: 13%;
+  
+  }
+  .Parkingarea{
+    position: absolute;
+    z-index: 9999;
+    top: 57%;
+    left: 22%;
+  }
+  .NONM3AREA{
+    position: absolute;
+    z-index: 9999;
+    top: 55%;
+    right: -47%;
+  }
+  
+  .gate-entrance{
+    position: absolute;
+    z-index: 9999;
+    top: 64%;
+    right: -20%;
+  }
+  .gate-exit{
+    position: absolute;
+    z-index: 9999;
+    top: 61%;
+    left: 34%;
+  }
+  
+}
+
+@media (min-width: 1950px) and (max-width: 2000px) {
+
+  .M3NorthZone3{
+    position: absolute;
+    z-index: 9999;
+    top: 26%;
+    right: 9%;
+  }
+  .M3SouthZone2{
+    position: absolute;
+    z-index: 9999;
+    top: 39%;
+    right: 11%;
+
+  }
+  .M3SouthZone3{
+    position: absolute;
+    z-index: 9999;
+    top: 57%;
+    right: 13%;
+  
+  }
+  .Parkingarea{
+    position: absolute;
+    z-index: 9999;
+    top: 57%;
+    left: 20%;
+  }
+  .NONM3AREA{
+    position: absolute;
+    z-index: 9999;
+    top: 55%;
+    right: -47%;
+  }
+  
+  .gate-entrance{
+    position: absolute;
+    z-index: 9999;
+    top: 64%;
+    right: -17%;
+  }
+  .gate-exit{
+    position: absolute;
+    z-index: 9999;
+    top: 61%;
+    left: 33%;
+  }
+  
+}
+
+/* end Responsive for checkboxs NN East css  */
+
+
+/* start Responsive for checkboxs Hovvej West css  */
+
+
+@media (min-width: 992px) and (max-width: 1100px) {
+  .zone-1-1-west{
+    position: absolute;
+    z-index: 9999;
+    bottom: 30%;
+    left: 33%;
+  }
+  .zone-2-1-west{
+    position: absolute;
+    z-index: 9999;
+    top: 58%;
+    right: -31%;
+  }
+}
+
+@media (min-width:1100px) and (max-width: 1200px) {
+  .zone-1-1-west{
+    position: absolute;
+    z-index: 9999;
+    bottom: 30%;
+    left: 33%;
+  }
+  .zone-2-1-west{
+    position: absolute;
+    z-index: 9999;
+    top: 56%;
+    right: -19%;
+  }
+}
+
+@media (min-width:1200px) and (max-width: 1300px) {
+
+  .zone-1-1-west{
+    position: absolute;
+    z-index: 9999;
+    bottom: 30%;
+    left: 33%;
+  }
+  .zone-2-1-west{
+    position: absolute;
+    z-index: 9999;
+    top: 58%;
+    right: -9%;
+  }
+}
+
+@media (min-width:1300px) and (max-width: 1400px) {
+
+  .zone-1-1-west{
+    position: absolute;
+    z-index: 9999;
+    bottom: 30%;
+    left: 26%;
+  }
+  .zone-2-1-west{
+    position: absolute;
+    z-index: 9999;
+    top: 58%;
+    right: 1%;
+  }
+}
+
+@media (min-width:1400px) and (max-width: 1550px) {
+
+  .zone-1-1-west{
+    position: absolute;
+    z-index: 9999;
+    bottom: 30%;
+    left: 26%;
+  }
+  .zone-2-1-west{
+    position: absolute;
+    z-index: 9999;
+    top: 57%;
+    right: 9%;
+  }
+}
+
+@media (min-width: 1600px) and (max-width: 1700px) {
+
+  .zone-1-1-west {
+    position: absolute;
+    z-index: 9999;
+    bottom: 30%;
+    left: 21%;
+  }
+  
+  .zone-2-1-west {
+    position: absolute;
+    z-index: 9999;
+    top: 58%;
+    right: 17%;
+  }
+  
+}
+
+@media (min-width: 1700px) and (max-width: 1800px) {
+
+  .zone-1-1-west {
+    position: absolute;
+    z-index: 9999;
+    bottom: 30%;
+    left: 21%;
+  }
+  
+  .zone-2-1-west {
+    position: absolute;
+    z-index: 9999;
+    top: 57%;
+    right: 22%;
+  }
+  
+}
+
+@media (min-width: 1800px) and (max-width: 1900px) {
+
+  .zone-1-1-west {
+    position: absolute;
+    z-index: 9999;
+    bottom: 30%;
+    left: 18%;
+  }
+  
+  .zone-2-1-west {
+    position: absolute;
+    z-index: 9999;
+    top: 57%;
+    right: 27%;
+  }
+  
+}
+
+@media (min-width: 1900px) and (max-width: 2000px) {
+
+  .zone-1-1-west {
+    position: absolute;
+    z-index: 9999;
+    bottom: 30%;
+    left: 18%;
+  }
+  
+  .zone-2-1-west {
+    position: absolute;
+    z-index: 9999;
+    top: 57%;
+    right: 28%;
+  } 
+  
+}
+
+/* end Responsive for checkboxs Hovvej East css  */
+
+
+/* start Responsive for checkboxs Hovvej East css  */
+
+@media (min-width: 992px) and (max-width: 1100px) {
+
+  .zone-1-1-east {
+    position: absolute;
+    z-index: 9999;
+    bottom: 30%;
+    right: 9%;
+  }
+  .zone-2-1-east {
+    position: absolute;
+    z-index: 9999;
+    top: 35%;
+    right: -30%;
+  }
+}
+
+@media (min-width: 1100px) and (max-width: 1200px) {
+
+  .zone-1-1-east {
+    position: absolute;
+    z-index: 9999;
+    bottom: 30%;
+    right: 17%;
+  }
+  .zone-2-1-east {
+    position: absolute;
+    z-index: 9999;
+    top: 34%;
+    right: -17%;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1300px) {
+
+  .zone-1-1-east {
+    position: absolute;
+    z-index: 9999;
+    bottom: 30%;
+    right: 24%;
+  }
+  .zone-2-1-east {
+    position: absolute;
+    z-index: 9999;
+    top: 34%;
+    right: -8%;
+  }
+}
+
+@media (min-width: 1300px) and (max-width: 1400px) {
+
+  .zone-1-1-east {
+    position: absolute;
+    z-index: 9999;
+    bottom: 30%;
+    right: 30%;
+  }
+  .zone-2-1-east {
+    position: absolute;
+    z-index: 9999;
+    top: 34%;
+    right: -1%;
+  }
+}
+
+@media (min-width: 1400px) and (max-width: 1550px) {
+
+  .zone-1-1-east {
+    position: absolute;
+    z-index: 9999;
+    bottom: 30%;
+    right: 38%;
+  }
+  .zone-2-1-east {
+    position: absolute;
+    z-index: 9999;
+    top: 34%;
+    right: 10%;
+  }
+}
+
+@media (min-width: 1550px) and (max-width: 1600px) {
+  .zone-1-1-east {
+    position: absolute;
+      z-index: 9999;
+      bottom: 32%;
+      right: 38%;
+  }
+  
+  .zone-2-1-east {
+    position: absolute;
+    z-index: 9999;
+    top: 35%;
+    right: 16%;
+  
+  }
+}
+
+@media (min-width: 1600px) and (max-width: 1700px) {
+
+  .zone-1-1-east {
+    position: absolute;
+      z-index: 9999;
+      bottom: 32%;
+      right: 39%;
+  }
+  
+  .zone-2-1-east {
+    position: absolute;
+    z-index: 9999;
+    top: 35%;
+    right: 17%;
+  
+  }
+}
+
+@media (min-width: 1700px) and (max-width: 1800px) {
+
+  .zone-1-1-east {
+    position: absolute;
+      z-index: 9999;
+      bottom: 31%;
+      right: 45%;
+  }
+  
+  .zone-2-1-east {
+    position: absolute;
+    z-index: 9999;
+    top: 35%;
+    right: 22%;
+  
+  }
+}
+
+@media (min-width: 1800px) and (max-width: 1900px) {
+
+  .zone-1-1-east {
+    position: absolute;
+      z-index: 9999;
+      bottom: 31%;
+      right: 48%;
+  }
+  
+  .zone-2-1-east {
+    position: absolute;
+    z-index: 9999;
+    top: 35%;
+    right: 27%;
+  
+  }
+}
+
+@media (min-width: 1900px) and (max-width: 2000px) {
+
+  .zone-1-1-east {
+    position: absolute;
+      z-index: 9999;
+      bottom: 31%;
+      right: 50%;
+  }
+  
+  .zone-2-1-east {
+    position: absolute;
+    z-index: 9999;
+    top: 35%;
+    right: 30%;
+  
+  }
+}
+
+/* end Responsive for checkboxs Hovvej East css  */
+
+/* start Responsive for checkboxs EC-JCP1 Hallas Alle css  */
+
+@media (min-width: 992px) and (max-width: 1100px) {
+.zone-1-1-ec[_ngcontent-twj-c397] {
+    position: absolute;
+    z-index: 9999;
+    top: 38%;
+    left: 17%;
+}
+.zone-2-1-ec{
+    position: absolute;
+    z-index: 9999;
+    top: 56%;
+    right: -5%;
+}
+}
+
+@media (min-width:1100px) and (max-width: 1200px) {
+.zone-1-1-ec[_ngcontent-twj-c397] {
+    position: absolute;
+    z-index: 9999;
+    top: 38%;
+    left: 17%;
+}
+.zone-2-1-ec{
+    position: absolute;
+    z-index: 9999;
+    top: 56%;
+    right: -5%;
+}
+}
+
+@media (min-width: 1550px) and (max-width: 1700px) {
+.zone-1-1-ec {
   position: absolute;
   z-index: 9999;
-  bottom: 5%;
-  right: 31%;
+  top: 34%;
+  left: 15%;
 }
-.Park-tent-8{
+
+.zone-2-1-ec {
   position: absolute;
   z-index: 9999;
-  bottom: 5%;
-  right: 7%;
+  /* top: 60%; */
+  top: 57%;
+  /* right: 15%; */
+  right: 28%;
 }
+}
+
+@media (min-width: 1700px) and (max-width: 1800px) {
+  .zone-1-1-ec {
+    position: absolute;
+    z-index: 9999;
+    top: 40%;
+    left: 10%;
+  }
+  
+  .zone-2-1-ec {
+    position: absolute;
+    z-index: 9999;
+    top: 57%;
+    right: 37%;
+  }
+}
+
+@media (min-width: 1800px) and (max-width: 1900px) {
+  .zone-1-1-ec {
+    position: absolute;
+    z-index: 9999;
+    top: 40%;
+    left: 10%;
+  }
+  
+  .zone-2-1-ec {
+    position: absolute;
+    z-index: 9999;
+    top: 57%;
+    right: 37%;
+  }
+}
+
+@media (min-width: 1900px) and (max-width: 2000px) {
+  .zone-1-1-ec {
+    position: absolute;
+    z-index: 9999;
+    top: 40%;
+    left: 10%;
+  }
+  
+  .zone-2-1-ec {
+    position: absolute;
+    z-index: 9999;
+    top: 57%;
+    right: 44%;
+  }
+}
+
+/* end Responsive for checkboxs EC-JCP1 Hallas Alle css  */
+
+
+/* start Responsive for checkboxs BA-DD Hallas Alle css  */
+
+@media (min-width: 992px) and (max-width: 1100px) {
+  .zone-1-1-ba{
+      position: absolute;
+      z-index: 9999;
+      top: 35%;
+      left: 49%;
+  }
+  .zone-2-1-ba{
+      position: absolute;
+      z-index: 9999;
+      top: 68%;
+      right: -36%;
+  }
+}
+
+@media (min-width: 1100px) and (max-width: 1200px) {
+  .zone-1-1-ba{
+      position: absolute;
+      z-index: 9999;
+      top: 35%;
+      left: 49%;
+  }
+  .zone-2-1-ba{
+      position: absolute;
+      z-index: 9999;
+      top: 68%;
+      right: -31%;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1300px) {
+  .zone-1-1-ba{
+      position: absolute;
+      z-index: 9999;
+      top: 35%;
+      left: 49%;
+  }
+  .zone-2-1-ba{
+      position: absolute;
+      z-index: 9999;
+      top: 68%;
+      right: -16%;
+  }
+}
+
+@media (min-width: 1300px) and (max-width: 1400px) {
+  .zone-1-1-ba{
+      position: absolute;
+      z-index: 9999;
+      top: 35%;
+      left: 40%;
+  }
+  .zone-2-1-ba{
+      position: absolute;
+      z-index: 9999;
+      top: 68%;
+      right: -10%;
+  }
+}
+
+@media (min-width: 1700px) and (max-width: 1800px) {
+  .zone-1-1-ba{
+    position: absolute;
+    z-index: 9999;
+    top: 35%;
+    left: 29%;
+  }
+  .zone-2-1-ba{
+    position: absolute;
+    z-index: 9999;
+    top: 68%;
+    right: 20%;
+  }
+  
+}
+
+@media (min-width: 1800px) and (max-width: 1900px) {
+  .zone-1-1-ba{
+    position: absolute;
+    z-index: 9999;
+    top: 35%;
+    left: 29%;
+  }
+  .zone-2-1-ba{
+    position: absolute;
+    z-index: 9999;
+    top: 68%;
+    right: 20%;
+  }
+  
+}
+
+@media (min-width: 1900px) and (max-width: 2000px) {
+  .zone-1-1-ba{
+    position: absolute;
+    z-index: 9999;
+    top: 35%;
+    left: 26%;
+  }
+  .zone-2-1-ba{
+    position: absolute;
+    z-index: 9999;
+    top: 68%;
+    right: 28%;
+  }
+  
+}
+
+/* end Responsive for checkboxs BA-DD Hallas Alle css  */
+

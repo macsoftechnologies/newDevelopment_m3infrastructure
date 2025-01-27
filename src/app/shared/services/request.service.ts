@@ -143,12 +143,12 @@ export class RequestService {
                 isSelected: false
               },
               {
-                value: 'Gate/Entrance',
+                value: 'Gate Entrance',
                 className: "gate-entrance",
                 isSelected: false
               },
               {
-                value: 'Gate/Exit',
+                value: 'Gate Exit',
                 className: "gate-exit",
                 isSelected: false
               },
@@ -228,7 +228,7 @@ export class RequestService {
             floorName: 'Office & Welfare cabin area',
             zoneSubList: [
               {
-                value: 'Office & Welfare cabin area',
+                value: 'Office and Welfare cabin area',
                 className: "Office-Welfare",
                 isSelected: false
               },
@@ -311,6 +311,56 @@ export class RequestService {
             ]
           },
 
+        ]
+      },
+
+      {
+        planType: "EH Lake East",
+        zoneList: [
+          {
+            floorName: 'EHLakeEast Zones',
+            zoneSubList: [
+              {
+                value: 'Zone 1',
+                className: "Zone-1-EHLakeEast",
+                isSelected: false
+              },
+              {
+                value: 'Zone 2',
+                className: "Zone-2-EHLakeEast",
+                isSelected: false
+              },
+             
+            ]
+          },
+          
+        ]
+      },
+
+      {
+        planType: "EH Lake West",
+        zoneList: [
+          {
+            floorName: 'EHLakeWest Zones',
+            zoneSubList: [
+              {
+                value: 'Zone 1',
+                className: "Zone-1-EHLakeWest",
+                isSelected: false
+              },
+              {
+                value: 'Zone 2',
+                className: "Zone-2-EHLakeWest",
+                isSelected: false
+              },
+              {
+                value: 'Zone 3',
+                className: "Zone-3-EHLakeWest",
+                isSelected: false
+              },
+            ]
+          },
+          
         ]
       },
 

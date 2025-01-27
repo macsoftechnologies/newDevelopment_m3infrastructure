@@ -449,13 +449,13 @@ export class StatusChangeDialogComponent implements OnInit {
 
 
     // this.updaterequestdata.denmark_time = this.data["payload"]["denmark_time"];
-    if (this.updaterequestdata.Hot_work == 1) {
-      this.statusOpenForm.get('name_of_the_fire_watcher1').setValidators([Validators.required]);
-      this.statusOpenForm.get('phone_number_of_fire_watcher1').setValidators([Validators.required]);
-    } else {
-      this.statusOpenForm.get('name_of_the_fire_watcher1').clearValidators();
-      this.statusOpenForm.get('phone_number_of_fire_watcher1').clearValidators();
-    }
+    // if (this.updaterequestdata.Hot_work == 1) {
+    //   this.statusOpenForm.get('name_of_the_fire_watcher1').setValidators([Validators.required]);
+    //   this.statusOpenForm.get('phone_number_of_fire_watcher1').setValidators([Validators.required]);
+    // } else {
+    //   this.statusOpenForm.get('name_of_the_fire_watcher1').clearValidators();
+    //   this.statusOpenForm.get('phone_number_of_fire_watcher1').clearValidators();
+    // }
 
     // if(this.type=='Closed' && this.updaterequestdata.Hot_work !== 1){
     //   this.statusUpdateForm.get('h_heat_source').clearValidators();

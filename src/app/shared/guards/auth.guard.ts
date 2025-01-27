@@ -10,12 +10,23 @@ import { JwtAuthService } from "../services/auth/jwt-auth.service";
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-  constructor(private router: Router, private jwtAuth: JwtAuthService) {}
+  constructor(private router: Router, private jwtAuth: JwtAuthService) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    
+
     if (this.jwtAuth.isLoggedIn()) {
-      return true;
+      const secretKeyValue = localStorage.getItem('secretkey');
+      if (secretKeyValue === 'm3infrastructure') {
+        return true;
+      } else {
+        this.router.navigate(["/sessions/signin"], {
+          queryParams: {
+            return: state.url
+          }
+        });
+        return false;
+      }
+      // return true;
     } else {
       this.router.navigate(["/sessions/signin"], {
         queryParams: {

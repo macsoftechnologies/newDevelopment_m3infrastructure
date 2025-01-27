@@ -115,6 +115,53 @@
                         </mat-form-field>
                     </mat-grid-tile>
 
+                </mat-grid-list>
+
+                <mat-grid-list cols="2" rowHeight="80px">
+                    <mat-grid-tile>
+                        <mat-form-field class="datepikr full-width" appearance="outline">
+                            <mat-label>Working Date (from)</mat-label>
+                            <input matInput [min]="minDate" formControlName="WorkingDateFrom" [max]="maxDate"
+                                [matDatepicker]="fspicker" />
+                            <mat-datepicker-toggle matSuffix [for]="fspicker"></mat-datepicker-toggle>
+                            <mat-datepicker #fspicker></mat-datepicker>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-form-field class="datepikr full-width" appearance="outline">
+                            <mat-label>Working Date (to)</mat-label>
+                            <input matInput [min]="minDate" formControlName="WorkingDateTo" [max]="maxDate"
+                                [matDatepicker]="tspicker" />
+                            <mat-datepicker-toggle matSuffix [for]="tspicker"></mat-datepicker-toggle>
+                            <mat-datepicker #tspicker></mat-datepicker>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                </mat-grid-list>
+
+                <mat-grid-list cols="2" rowHeight="80px">
+                    <mat-grid-tile>
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Start Time</mat-label>
+                            <input matInput [ngxTimepicker]="startTime" [format]="24" placeholder="Start Time"
+                                formControlName="StartTime" />
+                            <ngx-material-timepicker #startTime [minutesGap]="5"></ngx-material-timepicker>
+
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>End Time</mat-label>
+                            <input matInput [ngxTimepicker]="endTime" [format]="24" placeholder="End Time"
+                                formControlName="EndTime" />
+
+                        </mat-form-field>
+                        <ngx-material-timepicker #endTime [minutesGap]="5"></ngx-material-timepicker>
+                    </mat-grid-tile>
+                </mat-grid-list>
+
+
+                <mat-grid-list cols="2" rowHeight="80px">
+
                     <!-- level -->
                     <mat-grid-tile>
                         <mat-form-field class="full-width" appearance="outline">
@@ -126,7 +173,7 @@
                             </mat-select>
                         </mat-form-field>
                     </mat-grid-tile>
-
+                    
                 </mat-grid-list>
             </form>
             <div class="" style="text-align: right;">

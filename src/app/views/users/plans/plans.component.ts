@@ -95,9 +95,11 @@ export class PlansComponent implements OnInit {
     Date:null,
     // Site_Id:null,
     Sub_Contractor_Id: null,
-    Room_Type: null
-    //fromDate:null,
-    // toDate:null
+    Room_Type: null,
+    from_date: null,
+    to_date: null,
+    start_time: null,
+    end_time: null,
   }
   Planslist: any[] = [];
   dataForExcel = [];
@@ -146,7 +148,11 @@ export class PlansComponent implements OnInit {
       subContractor: [''],
       Building: [''],
       Site: [''],
-      level: ['']
+      level: [''],
+      WorkingDateFrom: [''],
+      WorkingDateTo: [''],
+      StartTime: [''],
+      EndTime: [''],
     });
 
     //     var current = new Date();     // get current date    
@@ -261,6 +267,13 @@ export class PlansComponent implements OnInit {
     this.plansDtodata.Year=this.PlanForm.controls["Year"].value;
     this.plansDtodata.Week=this.PlanForm.controls["Weekno"].value;
     this.plansDtodata.Room_Type=this.PlanForm.controls["level"].value;
+
+    this.plansDtodata.from_date = this.datePipe.transform(this.PlanForm.controls["WorkingDateFrom"].value, 'yyyy-MM-dd');
+    this.plansDtodata.to_date = this.datePipe.transform(this.PlanForm.controls["WorkingDateTo"].value, 'yyyy-MM-dd');
+
+    this.plansDtodata.start_time = this.PlanForm.controls["StartTime"].value;
+    this.plansDtodata.end_time = this.PlanForm.controls["EndTime"].value;
+
 
     //  this.plansDtodata.Plans_Id=this.PlanForm.controls["Plantype"].value;
 
@@ -491,10 +504,12 @@ export class PlansComponent implements OnInit {
         //   Notes:x["Notes"],Working_Date:x["Working_Date"],Day:this.days_Names[day]}
         // )
         this.DownloadExcelData.push(
-          {PermitNo:x["PermitNo"],ContractorName:x["subContractorName"],sub_Contractor_Name: x['subContractorName'],Building_Name:x["building_name"],Level:x["Room_Type"],
-          Room_Nos:x['Room_Nos'],Activity:x["Activity"],
-          Start_Time:x["Start_Time"],End_Time:x["End_Time"],Request_status:x["Request_status"],
-          Notes:x["Notes"],Working_Date:x["Working_Date"],Day:this.days_Names[day], }
+          {
+            PermitNo: x["PermitNo"], ContractorName: x["subContractorName"], sub_Contractor_Name: x['subContractorName'], Building_Name: x["building_name"], Level: x["Room_Type"],
+            Room_Nos: x['Room_Nos'], Activity: x["Activity"],description_of_activity: x["description_of_activity"], Rams_Number: x["rams_number"],HRAs: this.printHRAS(x),Auth:x[""],Comment: x[""],
+            Start_Time: x["Start_Time"], End_Time: x["End_Time"], Request_status: x["Request_status"],
+            Notes: x["Notes"], Working_Date: x["Working_Date"], Day: this.days_Names[day], 
+          }
         )
       });
 
@@ -509,6 +524,16 @@ export class PlansComponent implements OnInit {
     }
 
     this.ete.exportExcel(reportData);
+  }
+  printHRAS(tableData) {
+    let hrasValues = [];
+    Object.entries(tableData).forEach(([key, value]) => {
+      console.log(`${key}: ${value}`);
+      if ((key == "Hot_work" || key == "working_on_electrical_system" || key == "working_hazardious_substen" || key == "pressure_tesing_of_equipment" || key == "working_at_height" || key == "working_confined_spaces" || key == "work_in_atex_area" || key == "securing_facilities" || key == "excavation_works" || key == "using_cranes_or_lifting") && value == 1) {
+        hrasValues.push(key)
+      }
+    });
+    return hrasValues.toString();
   }
   Reset()
   {

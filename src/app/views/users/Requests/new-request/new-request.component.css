@@ -4230,3 +4230,221 @@ input {
   padding: 0;
   z-index: 9999999;
 }
+
+/* end code */
+
+/* eh lake start */
+
+.EHLakeEast-1{
+  position: absolute;
+  bottom: 5%;
+  left: 46%;
+  width: 24%;
+  height: 43%;
+  padding: 0;
+  z-index: 9999999;
+}
+.EHLakeWest-1{
+  position: absolute;
+  top: 5%;
+  left: 33%;
+  width: 41%;
+  height: 71%;
+  padding: 0;
+  z-index: 9999999;
+}
+
+/* end eh lake  */
+
+/* / Start Responsive RendsborgPark M3 North-1 in background css  / */
+
+@media (min-width: 360px) and (max-width: 468px) {
+  .RendsborgPark-parking-1{
+    position: absolute;
+    top: 17%;
+    right: 33%;
+    width: 15%;
+    height: 24%;
+    padding: 0;
+    z-index: 9999999;
+}
+.RendsborgPark-parking-2{
+  position: absolute;
+  top: 42%;
+  right: 38%;
+  width: 11%;
+  min-width: 9%;
+  height: 15%;
+  padding: 0;
+  z-index: 9999999;
+}
+.RendsborgPark-North-2{
+  position: absolute;
+  bottom: 21%;
+  left: 19%;
+   width: 15%;
+  height: 14%;
+  padding: 0;
+  z-index: 9999999;
+}
+.RendsborgPark-South-1{
+  position: absolute;
+  bottom: 31%;
+  left: 33%;
+  width: 9.5%;
+  min-width: 5.7%;
+  height: 15.5%;
+  padding: 0;
+  z-index: 9999999;
+}
+.RendsborgPark-North-1{
+  position: absolute;
+  bottom: 31%;
+  left: 43%;
+  width: 5%;
+  min-width: 3%;
+  height: 16%;
+  padding: 0;
+  z-index: 9999999;
+}
+.Office-area{
+  position: absolute;
+  bottom: 31%;
+  left: 49%;
+  width: 12%;
+  height: 10%;
+  padding: 0;
+  z-index: 9999999;
+}
+.RendsborgPark-parking-3{
+  position: absolute;
+  top: 40%;
+  right: 29%;
+  width: 8%;
+  min-width: 4%;
+  height: 22%;
+  padding: 0;
+  z-index: 9999999;
+}
+}
+
+@media (min-width: 468px) and (max-width: 549px) {
+  .RendsborgPark-parking-1{
+    position: absolute;
+    top: 17%;
+    right: 33%;
+    width: 15%;
+    height: 24%;
+    padding: 0;
+    z-index: 9999999;
+}
+.RendsborgPark-parking-2{
+  position: absolute;
+  top: 42%;
+  right: 38%;
+  width: 11%;
+  min-width: 9%;
+  height: 15%;
+  padding: 0;
+  z-index: 9999999;
+}
+.RendsborgPark-South-1{
+    position: absolute;
+    bottom: 31%;
+    left: 33%;
+    width: 9.5%;
+    min-width: 5.7%;
+    height: 15.5%;
+    padding: 0;
+    z-index: 9999999;
+}
+.RendsborgPark-North-1{
+  position: absolute;
+  bottom: 31%;
+  left: 43%;
+  width: 5%;
+  min-width: 3%;
+  height: 16%;
+  padding: 0;
+  z-index: 9999999;
+}
+.Office-area{
+  position: absolute;
+  bottom: 31%;
+  left: 49%;
+  width: 12%;
+  height: 10%;
+  padding: 0;
+  z-index: 9999999;
+}
+.RendsborgPark-parking-3{
+  position: absolute;
+  top: 40%;
+  right: 29%;
+  width: 8%;
+  min-width: 4%;
+  height: 22%;
+  padding: 0;
+  z-index: 9999999;
+}
+}
+
+@media (min-width: 550px) and (max-width: 992px) {
+  .RendsborgPark-North-1{
+    position: absolute;
+    bottom: 29%;
+    left: 43%;
+    width: 5%;
+    min-width: 3%;
+    height: 16%;
+    padding: 0;
+    z-index: 9999999;
+}
+}
+
+@media (min-width: 992px) and (max-width: 1100px) {
+  .RendsborgPark-North-1{
+    position: absolute;
+    bottom: 29%;
+    left: 43%;
+    width: 5%;
+    min-width: 3%;
+    height: 16%;
+    padding: 0;
+    z-index: 9999999;
+}
+}
+
+@media (min-width: 1100px) and (max-width: 1200px) {
+  .RendsborgPark-North-1{
+    position: absolute;
+    bottom: 29%;
+    left: 43%;
+    width: 5%;
+    min-width: 3%;
+    height: 16%;
+    padding: 0;
+    z-index: 9999999;
+}
+}
+
+@media (min-width: 1200px) and (max-width: 1300px) {
+  .RendsborgPark-North-1{
+    position: absolute;
+    bottom: 29%;
+    left: 43%;
+    width: 5%;
+    min-width: 3%;
+    height: 16%;
+    padding: 0;
+    z-index: 9999999;
+}
+}
+
+/* / End Responsive RendsborgPark M3 North-1 in background css  / */
+
+/* background color on bulidings */
+.btn-hover:hover{
+  /* background-color: #ff000080!important; */
+  background-color: rgba(0, 0, 0, 0.5)!important;
+}
