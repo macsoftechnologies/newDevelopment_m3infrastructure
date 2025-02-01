@@ -316,6 +316,7 @@ export class EditRequestDto {
     // denmark_date: any;
     system_drained: any;
     excavation_shoring: any;
+    rams_number: any;
 }
 
 export class DeleteRequestDto {

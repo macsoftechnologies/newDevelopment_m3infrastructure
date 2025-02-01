@@ -72,7 +72,7 @@
           <mat-form-field class="full-width" appearance="outline">
             <mat-label>Contractor</mat-label>
             <!-- <mat-select formControlName="Contractor" name="Company" [disabled]="!IsNotSubCntr"> -->
-              <mat-select formControlName="Contractor" name="Company" [disabled]="!IsNotASubCntr">
+            <mat-select formControlName="Contractor" name="Company" [disabled]="!IsNotASubCntr">
               <mat-option>None</mat-option>
               <mat-option *ngFor="let loc of Contractors" [value]="loc.id">
                 {{ loc.subContractorName }}
@@ -170,14 +170,16 @@
       </mat-grid-list>
 
       <mat-grid-list cols="2" rowHeight="80px">
-        
+
         <mat-grid-tile>
           <mat-form-field class="full-width" appearance="outline">
             <mat-label>Task Specific PPE</mat-label>
             <mat-select formControlName="TaskSpecific" name="TaskSpecific" [multiple]="true">
               <mat-option>None</mat-option>
-              <mat-option *ngFor="let getTaskSpecificValues of getTaskSpecific" [value]="getTaskSpecificValues" class="hras-text">
-                <div class="hras-content"> <img src="{{BaseUrl}}{{getTaskSpecificValues?.image}}" class="hras-image"> {{ getTaskSpecificValues.label }}
+              <mat-option *ngFor="let getTaskSpecificValues of getTaskSpecific" [value]="getTaskSpecificValues"
+                class="hras-text">
+                <div class="hras-content"> <img src="{{BaseUrl}}{{getTaskSpecificValues?.image}}" class="hras-image"> {{
+                  getTaskSpecificValues.label }}
                 </div>
               </mat-option>
             </mat-select>
@@ -303,7 +305,13 @@
 
       <ngx-datatable-column name="Working Date" [flexGrow]="1" [width]="50">
         <ng-template let-row="row" ngx-datatable-cell-template>
-          {{ row?.Working_Date | date: "mediumDate" }}
+          <!-- {{ row?.Working_Date | date: "mediumDate" }} -->
+          <p *ngIf="row?.Working_Date != '0000-00-00' ; else emptyDate">
+            {{ row?.Working_Date | date: "mediumDate" }}
+          </p>
+          <ng-template #emptyDate>
+            <p>0000-00-00</p> <!-- Empty content -->
+          </ng-template>
         </ng-template>
       </ngx-datatable-column>
       <ngx-datatable-column name="Time" [flexGrow]="1" [width]="50">
@@ -313,7 +321,8 @@
       </ngx-datatable-column>
       <ngx-datatable-column name="Status" [flexGrow]="1" [width]="50" *ngIf="(this.userdata['role'] !== 'Observer')">
         <ng-template let-row="row" ngx-datatable-cell-template>
-          <mat-chip [ngClass]="{ 'status_draft': row?.Request_status != 'Hold'}" mat-sm-chip [color]="'primary'" (click)="EditDraft(row)" *ngIf="
+          <mat-chip [ngClass]="{ 'status_draft': row?.Request_status != 'Hold'}" mat-sm-chip [color]="'primary'"
+            (click)="EditDraft(row)" *ngIf="
               row.Request_status != 'Hold' &&
               row.Request_status != 'Approved' &&
               row.Request_status != 'Opened' &&
@@ -321,18 +330,23 @@
             ">
             {{ row?.Request_status }}
           </mat-chip>
-          <mat-chip [ngClass]="{ 'status_closed': row?.Request_status == 'Closed'}" mat-sm-chip [color]="'primary'" *ngIf="row.Request_status == 'Closed'">
+          <mat-chip [ngClass]="{ 'status_closed': row?.Request_status == 'Closed'}" mat-sm-chip [color]="'primary'"
+            *ngIf="row.Request_status == 'Closed'">
             {{ row?.Request_status }}
           </mat-chip>
-          <mat-chip [ngClass]="{ 'status_approved': row?.Request_status == 'Approved'}" mat-sm-chip class="hold-sty" [color]="'primary'" (click)="ChangeStausbysubcontractor(row, 'Opened')"
+          <mat-chip [ngClass]="{ 'status_approved': row?.Request_status == 'Approved'}" mat-sm-chip class="hold-sty"
+            [color]="'primary'" (click)="ChangeStausbysubcontractor(row, 'Opened')"
             *ngIf="row.Request_status == 'Approved'">{{ row?.Request_status }}
           </mat-chip>
-          <mat-chip [ngClass]="{ 'status_opened': row?.Request_status == 'Opened'}" mat-sm-chip class="hold-sty" [color]="'primary'" (click)="ChangeStausbysubcontractor(row, 'Closed')"
+          <mat-chip [ngClass]="{ 'status_opened': row?.Request_status == 'Opened'}" mat-sm-chip class="hold-sty"
+            [color]="'primary'" (click)="ChangeStausbysubcontractor(row, 'Closed')"
             *ngIf="row.Request_status == 'Opened'">{{ row?.Request_status }}
           </mat-chip>
-          <mat-chip [ngClass]="{ 'status_hold': row?.Request_status == 'Hold'}" class="hold-sty" mat-sm-chip [color]="'primary'" *ngIf="row.Request_status == 'Hold' && isoperator"
-            (click)="ChangeStaus(row)">{{ row?.Request_status }}</mat-chip>
-          <mat-chip [ngClass]="{ 'status_hold': row?.Request_status == 'Hold'}" mat-sm-chip [color]="'primary'" *ngIf="row.Request_status == 'Hold' && !isoperator">
+          <mat-chip [ngClass]="{ 'status_hold': row?.Request_status == 'Hold'}" class="hold-sty" mat-sm-chip
+            [color]="'primary'" *ngIf="row.Request_status == 'Hold' && isoperator" (click)="ChangeStaus(row)">{{
+            row?.Request_status }}</mat-chip>
+          <mat-chip [ngClass]="{ 'status_hold': row?.Request_status == 'Hold'}" mat-sm-chip [color]="'primary'"
+            *ngIf="row.Request_status == 'Hold' && !isoperator">
             {{ row?.Request_status }}</mat-chip>
         </ng-template>
       </ngx-datatable-column>

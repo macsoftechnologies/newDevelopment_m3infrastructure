@@ -310,8 +310,8 @@ export class PlansComponent implements OnInit {
 
   GetRequestData(searchreq) {
     this.requstservice.GetPlans(this.plansDtodata).subscribe(res => {
-      console.log(res);
-      this.Planslist = res["data"];
+      console.log(res, "search list");
+      this.Planslist = res[0]["data"];
     });
   }
 
