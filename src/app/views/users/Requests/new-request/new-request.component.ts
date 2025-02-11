@@ -1741,14 +1741,14 @@ export class NewRequestComponent implements OnInit {
       } else if (this.userdata["role"] == "Admin") {
         this.editform = true;
         this.Assigneditform = true;
-        this.subeditform = false;
+        this.subeditform = true;
         this.seditform = true;
       } else if (this.userdata["role"] == "Department") {
         this.editform = true;
         this.Assigneditform = true;
         this.Status = this.OperatorStatus;
         this.seditform = true;
-        this.subeditform = false;
+        this.subeditform = true;
       }
 
       this.isnewrequestcreated = true;
@@ -2305,7 +2305,8 @@ export class NewRequestComponent implements OnInit {
     // console.log("block", this.planSelectedBlocks)
     // this.RequestForm.controls["Room"].setValue(this.planSelectedBlocks);
     this.RequestForm.controls["Room"].setValue(blocks);
-    this.isnewrequestcreated = this.selectedbuilding && this.selectedfloor && this.selectFloorBlocks?.length > 0 ? true : false;
+    this.isnewrequestcreated = this.selectedbuilding && this.selectedfloor && blocks?.length > 0 ? true : false;
+
     console.log("form data", this.RequestForm.value);
   }
   Getselectedroomitem(event) {
@@ -2492,6 +2493,7 @@ export class NewRequestComponent implements OnInit {
   }
 
   SaveasDraft(statusdata) {
+    // console.log("contractor")
     this.Requestdata.Request_status = "Draft";
     this.CreateRequest();
     //this.requestsserivies.CreateNewRequest()
@@ -2540,11 +2542,20 @@ export class NewRequestComponent implements OnInit {
     // this.Requestdata.Type_Of_Activity_Id=this.RequestForm.controls["TypeActivity"].value;
     this.Requestdata.Type_Of_Activity_Id =
       this.RequestForm.controls["TypeActivity"].value;
-    let workdate = this.datePipe.transform(
-      this.RequestForm.controls["Startdate"].value,
-      "yyyy-MM-dd"
-    );
 
+      // this.Requestdata.Building_Id =
+      //   this.RequestForm.controls["Building"].value;
+
+    // let workdate = this.datePipe.transform(
+    //   this.RequestForm.controls["Startdate"].value,
+    //   "yyyy-MM-dd"
+    // );
+
+    // this.Requestdata.Working_Date = workdate;
+    let startDateValue = this.RequestForm.controls["Startdate"].value;
+    // Check if the start date exists and is valid
+    let workdate = startDateValue != '0000-00-00' ? this.datePipe.transform(startDateValue, "yyyy-MM-dd")
+      : null;
     this.Requestdata.Working_Date = workdate;
     this.Requestdata.Start_Time = this.RequestForm.controls["StartTime"].value;
     this.Requestdata.End_Time = this.RequestForm.controls["EndTime"].value;
@@ -3064,296 +3075,304 @@ export class NewRequestComponent implements OnInit {
   }
 
   UpdateRequestDraftToHold(data) {
+    (Object as any).keys(this.RequestForm.controls).forEach((control) => {
+      this.RequestForm.get(`${control}`).updateValueAndValidity();
+      this.RequestForm.get(`${control}`).markAsTouched();
+    });
     console.log("draft", data)
-    var badarray = [];
-    this.spinner = true;
 
-    this.safetyprecdata.forEach((x) => {
-      badarray.push(x["id"]);
-    });
+    if (this.RequestForm.valid) {
 
-    const [currentDenmarkDate, currentDenmarkTime] = [
-      ...config.Denmarktz.split(" "),
-    ];
+      var badarray = [];
+      this.spinner = true;
 
-    console.log(currentDenmarkDate)
-    console.log(currentDenmarkTime)
+      this.safetyprecdata.forEach((x) => {
+        badarray.push(x["id"]);
+      });
 
-    // this.updaterequestdata.denmark_time = [currentDenmarkDate, currentDenmarkTime];
+      const [currentDenmarkDate, currentDenmarkTime] = [
+        ...config.Denmarktz.split(" "),
+      ];
 
-    this.updaterequestdata.createdTime = [currentDenmarkDate, currentDenmarkTime];
-    console.log(this.updaterequestdata.createdTime, "time")
+      console.log(currentDenmarkDate)
+      console.log(currentDenmarkTime)
 
-    this.updaterequestdata.Assign_Start_Time =
-      this.RequestForm.controls["AssignStartTime"].value;
-    this.updaterequestdata.Assign_End_Time =
-      this.RequestForm.controls["AssignEndTime"].value;
-    this.updaterequestdata.Special_Instructions =
-      this.RequestForm.controls["SpecialInstruction"].value;
-    // this.updaterequestdata.Safety_Precautions = this.safetyprecdata.map(obj => obj.id).join(",");//this.RequestForm.controls["Safetyprecaustion"].value;
-    // this.updaterequestdata.Safety_Precautions =  badarray.toString();
+      // this.updaterequestdata.denmark_time = [currentDenmarkDate, currentDenmarkTime];
 
-    if (this.NewRequestData.Request_status == "Draft") {
-      this.updaterequestdata.Request_status = "Hold";
-    } else {
-      this.updaterequestdata.Request_status =
-        this.RequestForm.controls["Status"].value;
-    }
+      this.updaterequestdata.createdTime = [currentDenmarkDate, currentDenmarkTime];
+      console.log(this.updaterequestdata.createdTime, "time")
 
-    this.updaterequestdata.Request_status = data;
-    var badarray = [];
-    var roomoarr = [];
-    this.Badges.forEach((x) => {
-      badarray.push(x["badgeId"]);
-    });
-    this.Rooms.forEach((x) => {
-      roomoarr.push(x["room_id"]);
-    });
-    this.updaterequestdata.Room_Nos =
-      this.RequestForm.controls["Room"].value.toString();
+      this.updaterequestdata.Assign_Start_Time =
+        this.RequestForm.controls["AssignStartTime"].value;
+      this.updaterequestdata.Assign_End_Time =
+        this.RequestForm.controls["AssignEndTime"].value;
+      this.updaterequestdata.Special_Instructions =
+        this.RequestForm.controls["SpecialInstruction"].value;
+      // this.updaterequestdata.Safety_Precautions = this.safetyprecdata.map(obj => obj.id).join(",");//this.RequestForm.controls["Safetyprecaustion"].value;
+      // this.updaterequestdata.Safety_Precautions =  badarray.toString();
 
-    this.updaterequestdata.Activity =
-      this.RequestForm.controls["Activity"].value;
-    // this.updaterequestdata.Badge_Numbers = this.RequestForm.controls["BADGENUMBER"].value;
-    this.updaterequestdata.Badge_Numbers =
-      this.RequestForm.controls["BADGENUMBER"].value.toString();
-    // this.updaterequestdata.Site_Id = this.RequestForm.controls["Site"].value;
-    // this.updaterequestdata.Building_Id =
-    //   this.RequestForm.controls["Building"].value;
-    this.updaterequestdata.Building_Id = data["Building_Id"];
-    this.updaterequestdata.Room_Type =
-      this.RequestForm.controls["FloorName"].value;
-    // this.updaterequestdata.Request_Date = this.RequestForm.controls["Requestdate"].value;
-    this.updaterequestdata.Company_Name =
-      this.RequestForm.controls["Companyname"].value;
-    this.updaterequestdata.Sub_Contractor_Id =
-      this.RequestForm.controls["SubContractor"].value;
-    this.updaterequestdata.teamId = this.RequestForm.controls["Team"].value;
-    this.updaterequestdata.Foreman = this.RequestForm.controls["Foreman"].value;
-    this.updaterequestdata.Foreman_Phone_Number =
-      this.RequestForm.controls["ForemanPhone"].value;
-    this.updaterequestdata.Type_Of_Activity_Id =
-      this.RequestForm.controls["TypeActivity"].value;
-    let workdate = this.datePipe.transform(
-      this.RequestForm.controls["Startdate"].value,
-      "yyyy-MM-dd"
-    );
+      if (this.NewRequestData.Request_status == "Draft") {
+        this.updaterequestdata.Request_status = "Hold";
+      } else {
+        this.updaterequestdata.Request_status =
+          this.RequestForm.controls["Status"].value;
+      }
 
-    this.updaterequestdata.Working_Date = workdate;
-    this.updaterequestdata.Start_Time =
-      this.RequestForm.controls["StartTime"].value;
-    this.updaterequestdata.End_Time =
-      this.RequestForm.controls["EndTime"].value;
-    // this.updaterequestdata.Room_Type =
-    //   this.RequestForm.controls["RoomType"].value;
-    // this.updaterequestdata.Crane_Requested =
-    //   this.RequestForm.controls["CMTdata"].value;
-    this.updaterequestdata.Crane_Number =
-      this.RequestForm.controls["CmtValue"].value;
-    this.updaterequestdata.Tools = this.RequestForm.controls["Tools"].value;
-    this.updaterequestdata.Machinery =
-      this.RequestForm.controls["Machinery"].value;
-    this.updaterequestdata.Hot_work =
-      this.RequestForm.controls["HOTWORK"].value;
-    this.updaterequestdata.Certified_Person =
-      this.RequestForm.controls["CertifiedPerson"].value;
-    this.updaterequestdata.LOTO_Procedure =
-      this.RequestForm.controls["LOTOPROCEDURE"].value;
-    this.updaterequestdata.LOTO_Number =
-      this.RequestForm.controls["LOTONumber"].value;
+      this.updaterequestdata.Request_status = data;
+      var badarray = [];
+      var roomoarr = [];
+      this.Badges.forEach((x) => {
+        badarray.push(x["badgeId"]);
+      });
+      this.Rooms.forEach((x) => {
+        roomoarr.push(x["room_id"]);
+      });
+      this.updaterequestdata.Room_Nos =
+        this.RequestForm.controls["Room"].value.toString();
 
-    this.updaterequestdata.Power_Off_Required =
-      this.RequestForm.controls["Poweroff"].value;
-    this.updaterequestdata.Number_Of_Workers =
-      this.RequestForm.controls["peopleinvalidcount"].value;
-    this.updaterequestdata.Notes = this.RequestForm.controls["Note"].value;
-    this.updaterequestdata.Safety_Precautions =
-      this.RequestForm.controls["Safetyprecaustion"].value.toString();
+      this.updaterequestdata.Activity =
+        this.RequestForm.controls["Activity"].value;
+      // this.updaterequestdata.Badge_Numbers = this.RequestForm.controls["BADGENUMBER"].value;
+      this.updaterequestdata.Badge_Numbers =
+        this.RequestForm.controls["BADGENUMBER"].value.toString();
+      this.updaterequestdata.Site_Id = this.RequestForm.controls["Site"].value;
+      this.updaterequestdata.Building_Id =
+        this.RequestForm.controls["Building"].value;
+      this.updaterequestdata.Building_Id = data["Building_Id"];
+      this.updaterequestdata.Room_Type =
+        this.RequestForm.controls["FloorName"].value;
+      // this.updaterequestdata.Request_Date = this.RequestForm.controls["Requestdate"].value;
+      this.updaterequestdata.Company_Name =
+        this.RequestForm.controls["Companyname"].value;
+      this.updaterequestdata.Sub_Contractor_Id =
+        this.RequestForm.controls["SubContractor"].value;
+      this.updaterequestdata.teamId = this.RequestForm.controls["Team"].value;
+      this.updaterequestdata.Foreman = this.RequestForm.controls["Foreman"].value;
+      this.updaterequestdata.Foreman_Phone_Number =
+        this.RequestForm.controls["ForemanPhone"].value;
+      this.updaterequestdata.Type_Of_Activity_Id =
+        this.RequestForm.controls["TypeActivity"].value;
+      let workdate = this.datePipe.transform(
+        this.RequestForm.controls["Startdate"].value,
+        "yyyy-MM-dd"
+      );
+
+      this.updaterequestdata.Working_Date = workdate;
+      this.updaterequestdata.Start_Time =
+        this.RequestForm.controls["StartTime"].value;
+      this.updaterequestdata.End_Time =
+        this.RequestForm.controls["EndTime"].value;
+      // this.updaterequestdata.Room_Type =
+      //   this.RequestForm.controls["RoomType"].value;
+      // this.updaterequestdata.Crane_Requested =
+      //   this.RequestForm.controls["CMTdata"].value;
+      this.updaterequestdata.Crane_Number =
+        this.RequestForm.controls["CmtValue"].value;
+      this.updaterequestdata.Tools = this.RequestForm.controls["Tools"].value;
+      this.updaterequestdata.Machinery =
+        this.RequestForm.controls["Machinery"].value;
+      this.updaterequestdata.Hot_work =
+        this.RequestForm.controls["HOTWORK"].value;
+      this.updaterequestdata.Certified_Person =
+        this.RequestForm.controls["CertifiedPerson"].value;
+      this.updaterequestdata.LOTO_Procedure =
+        this.RequestForm.controls["LOTOPROCEDURE"].value;
+      this.updaterequestdata.LOTO_Number =
+        this.RequestForm.controls["LOTONumber"].value;
+
+      this.updaterequestdata.Power_Off_Required =
+        this.RequestForm.controls["Poweroff"].value;
+      this.updaterequestdata.Number_Of_Workers =
+        this.RequestForm.controls["peopleinvalidcount"].value;
+      this.updaterequestdata.Notes = this.RequestForm.controls["Note"].value;
+      this.updaterequestdata.Safety_Precautions =
+        this.RequestForm.controls["Safetyprecaustion"].value.toString();
       this.updaterequestdata.rams_number = this.RequestForm.controls["RAMSNumber"].value;
 
-    // new fields add
+      // new fields add
 
-    this.updaterequestdata.name_of_the_fire_watcher = this.RequestForm.controls["fireWatcher"].value;
-    this.updaterequestdata.phone_number_of_fire_watcher = this.RequestForm.controls["fireWatcherNumber"].value;
+      this.updaterequestdata.name_of_the_fire_watcher = this.RequestForm.controls["fireWatcher"].value;
+      this.updaterequestdata.phone_number_of_fire_watcher = this.RequestForm.controls["fireWatcherNumber"].value;
 
-    this.updaterequestdata.tasks_in_progress_in_the_area = this.RequestForm.controls["floatLabel1"].value;
-    // this.updaterequestdata.account_during_the_work = this.RequestForm.controls["floatLabel2"].value;
-    this.updaterequestdata.lighting_sufficiently = this.RequestForm.controls["floatLabel3"].value;
-    this.updaterequestdata.spesific_risks_based_on_task = this.RequestForm.controls["floatLabel4"].value;
-    this.updaterequestdata.work_environment_safety_ensured = this.RequestForm.controls["floatLabel5"].value;
-    this.updaterequestdata.course_of_action_in_emergencies = this.RequestForm.controls["floatLabel6"].value;
+      this.updaterequestdata.tasks_in_progress_in_the_area = this.RequestForm.controls["floatLabel1"].value;
+      // this.updaterequestdata.account_during_the_work = this.RequestForm.controls["floatLabel2"].value;
+      this.updaterequestdata.lighting_sufficiently = this.RequestForm.controls["floatLabel3"].value;
+      this.updaterequestdata.spesific_risks_based_on_task = this.RequestForm.controls["floatLabel4"].value;
+      this.updaterequestdata.work_environment_safety_ensured = this.RequestForm.controls["floatLabel5"].value;
+      this.updaterequestdata.course_of_action_in_emergencies = this.RequestForm.controls["floatLabel6"].value;
 
-    this.updaterequestdata.fire_watch_establish = this.RequestForm.controls["floatLabel7"].value;
-    this.updaterequestdata.combustible_material = this.RequestForm.controls["floatLabel8"].value;
-    this.updaterequestdata.safety_measures = this.RequestForm.controls["floatLabel9"].value;
-    this.updaterequestdata.extinguishers_and_fire_blanket = this.RequestForm.controls["floatLabel10"].value;
+      this.updaterequestdata.fire_watch_establish = this.RequestForm.controls["floatLabel7"].value;
+      this.updaterequestdata.combustible_material = this.RequestForm.controls["floatLabel8"].value;
+      this.updaterequestdata.safety_measures = this.RequestForm.controls["floatLabel9"].value;
+      this.updaterequestdata.extinguishers_and_fire_blanket = this.RequestForm.controls["floatLabel10"].value;
 
-    this.updaterequestdata.welding_activitiy = this.RequestForm.controls["NEWHOTWORK"].value;
-    this.updaterequestdata.heat_treatment = this.RequestForm.controls["NEWHOTWORK1"].value;
-    this.updaterequestdata.air_extraction_be_established = this.RequestForm.controls["NEWHOTWORK2"].value;
+      this.updaterequestdata.welding_activitiy = this.RequestForm.controls["NEWHOTWORK"].value;
+      this.updaterequestdata.heat_treatment = this.RequestForm.controls["NEWHOTWORK1"].value;
+      this.updaterequestdata.air_extraction_be_established = this.RequestForm.controls["NEWHOTWORK2"].value;
 
-    // new fields added
-    this.updaterequestdata.new_sub_contractor = this.RequestForm.controls["newSubContractor"].value;
+      // new fields added
+      this.updaterequestdata.new_sub_contractor = this.RequestForm.controls["newSubContractor"].value;
 
-    this.updaterequestdata.affecting_other_contractors = this.RequestForm.controls["floatLabel11"].value;
-    this.updaterequestdata.other_conditions = this.RequestForm.controls["floatLabel12"].value;
-    this.updaterequestdata.lighting_begin_work = this.RequestForm.controls["floatLabel13"].value;
-    this.updaterequestdata.specific_risks = this.RequestForm.controls["floatLabel14"].value;
-    this.updaterequestdata.environment_ensured = this.RequestForm.controls["floatLabel15"].value;
-    this.updaterequestdata.course_of_action = this.RequestForm.controls["floatLabel16"].value;
+      this.updaterequestdata.affecting_other_contractors = this.RequestForm.controls["floatLabel11"].value;
+      this.updaterequestdata.other_conditions = this.RequestForm.controls["floatLabel12"].value;
+      this.updaterequestdata.lighting_begin_work = this.RequestForm.controls["floatLabel13"].value;
+      this.updaterequestdata.specific_risks = this.RequestForm.controls["floatLabel14"].value;
+      this.updaterequestdata.environment_ensured = this.RequestForm.controls["floatLabel15"].value;
+      this.updaterequestdata.course_of_action = this.RequestForm.controls["floatLabel16"].value;
 
-    // electrical system
-    this.updaterequestdata.working_on_electrical_system = this.RequestForm.controls["electricalSystem"].value;
-    this.updaterequestdata.responsible_for_the_informed = this.RequestForm.controls["floatLabel17"].value;
-    this.updaterequestdata.de_energized = this.RequestForm.controls["floatLabel18"].value;
-    this.updaterequestdata.if_no_loto = this.RequestForm.controls["floatLabel19"].value;
-    this.updaterequestdata.do_risk_assessment = this.RequestForm.controls["floatLabel20"].value;
-    this.updaterequestdata.if_yes_loto = this.RequestForm.controls["floatLabel21"].value;
-    this.updaterequestdata.electricity_have_isulation = this.RequestForm.controls["floatLabel22"].value;
-    this.updaterequestdata.electrician_certification = this.RequestForm.controls["floatLabel23"].value;
+      // electrical system
+      this.updaterequestdata.working_on_electrical_system = this.RequestForm.controls["electricalSystem"].value;
+      this.updaterequestdata.responsible_for_the_informed = this.RequestForm.controls["floatLabel17"].value;
+      this.updaterequestdata.de_energized = this.RequestForm.controls["floatLabel18"].value;
+      this.updaterequestdata.if_no_loto = this.RequestForm.controls["floatLabel19"].value;
+      this.updaterequestdata.do_risk_assessment = this.RequestForm.controls["floatLabel20"].value;
+      this.updaterequestdata.if_yes_loto = this.RequestForm.controls["floatLabel21"].value;
+      this.updaterequestdata.electricity_have_isulation = this.RequestForm.controls["floatLabel22"].value;
+      this.updaterequestdata.electrician_certification = this.RequestForm.controls["floatLabel23"].value;
 
-    // working_hazardious
+      // working_hazardious
 
-    this.updaterequestdata.working_hazardious_substen = this.RequestForm.controls["HAZARDOUS"].value;
-    this.updaterequestdata.relevant_mal = this.RequestForm.controls["floatLabel24"].value;
-    this.updaterequestdata.msds = this.RequestForm.controls["floatLabel25"].value;
-    this.updaterequestdata.equipment_taken_account = this.RequestForm.controls["floatLabel26"].value;
-    this.updaterequestdata.ventilation = this.RequestForm.controls["floatLabel27"].value;
-    this.updaterequestdata.hazardaus_substances = this.RequestForm.controls["floatLabel28"].value;
-    this.updaterequestdata.storage_and_disposal = this.RequestForm.controls["floatLabel29"].value;
-    this.updaterequestdata.reachable_case = this.RequestForm.controls["floatLabel30"].value;
-    this.updaterequestdata.checical_risk_assessment = this.RequestForm.controls["floatLabel31"].value;
+      this.updaterequestdata.working_hazardious_substen = this.RequestForm.controls["HAZARDOUS"].value;
+      this.updaterequestdata.relevant_mal = this.RequestForm.controls["floatLabel24"].value;
+      this.updaterequestdata.msds = this.RequestForm.controls["floatLabel25"].value;
+      this.updaterequestdata.equipment_taken_account = this.RequestForm.controls["floatLabel26"].value;
+      this.updaterequestdata.ventilation = this.RequestForm.controls["floatLabel27"].value;
+      this.updaterequestdata.hazardaus_substances = this.RequestForm.controls["floatLabel28"].value;
+      this.updaterequestdata.storage_and_disposal = this.RequestForm.controls["floatLabel29"].value;
+      this.updaterequestdata.reachable_case = this.RequestForm.controls["floatLabel30"].value;
+      this.updaterequestdata.checical_risk_assessment = this.RequestForm.controls["floatLabel31"].value;
 
-    //  <!-- testing start -->
+      //  <!-- testing start -->
 
-    this.updaterequestdata.pressure_tesing_of_equipment = this.RequestForm.controls["TESTINGs"].value;
-    this.updaterequestdata.transfer_of_palnt = this.RequestForm.controls["floatLabel32"].value;
-    this.updaterequestdata.area_drained = this.RequestForm.controls["floatLabel33"].value;
-    this.updaterequestdata.area_depressurised = this.RequestForm.controls["floatLabel34"].value;
-    this.updaterequestdata.area_flused = this.RequestForm.controls["floatLabel35"].value;
-    this.updaterequestdata.tank_area_container = this.RequestForm.controls["floatLabel36"].value;
-    this.updaterequestdata.system_free_for_dust = this.RequestForm.controls["floatLabel37"].value;
-    this.updaterequestdata.loto_plan_submitted = this.RequestForm.controls["floatLabel38"].value;
+      this.updaterequestdata.pressure_tesing_of_equipment = this.RequestForm.controls["TESTINGs"].value;
+      this.updaterequestdata.transfer_of_palnt = this.RequestForm.controls["floatLabel32"].value;
+      this.updaterequestdata.area_drained = this.RequestForm.controls["floatLabel33"].value;
+      this.updaterequestdata.area_depressurised = this.RequestForm.controls["floatLabel34"].value;
+      this.updaterequestdata.area_flused = this.RequestForm.controls["floatLabel35"].value;
+      this.updaterequestdata.tank_area_container = this.RequestForm.controls["floatLabel36"].value;
+      this.updaterequestdata.system_free_for_dust = this.RequestForm.controls["floatLabel37"].value;
+      this.updaterequestdata.loto_plan_submitted = this.RequestForm.controls["floatLabel38"].value;
 
-    // <!-- height start -->
+      // <!-- height start -->
 
-    this.updaterequestdata.working_at_height = this.RequestForm.controls["WORKHEIGHT"].value;
-    this.updaterequestdata.segragated_demarkated = this.RequestForm.controls["segragated_demarkated"].value;
-    this.updaterequestdata.lanyard_attachments = this.RequestForm.controls["floatLabel39"].value;
-    this.updaterequestdata.rescue_plan = this.RequestForm.controls["floatLabel40"].value;
-    this.updaterequestdata.avoid_hazards = this.RequestForm.controls["floatLabel41"].value;
-    this.updaterequestdata.height_training = this.RequestForm.controls["floatLabel42"].value;
-    this.updaterequestdata.supervision = this.RequestForm.controls["floatLabel43"].value;
-    this.updaterequestdata.shock_absorbing = this.RequestForm.controls["floatLabel44"].value;
-    this.updaterequestdata.height_equipments = this.RequestForm.controls["floatLabel45"].value;
-    this.updaterequestdata.vertical_life = this.RequestForm.controls["floatLabel46"].value;
-    this.updaterequestdata.secured_falling = this.RequestForm.controls["floatLabel47"].value;
-    this.updaterequestdata.dropped_objects = this.RequestForm.controls["floatLabel48"].value;
-    this.updaterequestdata.safe_acces = this.RequestForm.controls["floatLabel49"].value;
-    this.updaterequestdata.weather_acceptable = this.RequestForm.controls["floatLabel50"].value;
+      this.updaterequestdata.working_at_height = this.RequestForm.controls["WORKHEIGHT"].value;
+      this.updaterequestdata.segragated_demarkated = this.RequestForm.controls["segragated_demarkated"].value;
+      this.updaterequestdata.lanyard_attachments = this.RequestForm.controls["floatLabel39"].value;
+      this.updaterequestdata.rescue_plan = this.RequestForm.controls["floatLabel40"].value;
+      this.updaterequestdata.avoid_hazards = this.RequestForm.controls["floatLabel41"].value;
+      this.updaterequestdata.height_training = this.RequestForm.controls["floatLabel42"].value;
+      this.updaterequestdata.supervision = this.RequestForm.controls["floatLabel43"].value;
+      this.updaterequestdata.shock_absorbing = this.RequestForm.controls["floatLabel44"].value;
+      this.updaterequestdata.height_equipments = this.RequestForm.controls["floatLabel45"].value;
+      this.updaterequestdata.vertical_life = this.RequestForm.controls["floatLabel46"].value;
+      this.updaterequestdata.secured_falling = this.RequestForm.controls["floatLabel47"].value;
+      this.updaterequestdata.dropped_objects = this.RequestForm.controls["floatLabel48"].value;
+      this.updaterequestdata.safe_acces = this.RequestForm.controls["floatLabel49"].value;
+      this.updaterequestdata.weather_acceptable = this.RequestForm.controls["floatLabel50"].value;
 
-    // working_confined_spaces
+      // working_confined_spaces
 
-    this.updaterequestdata.working_confined_spaces = this.RequestForm.controls["CONFINEDSPACE"].value;
-    this.updaterequestdata.vapours_gases = this.RequestForm.controls["floatLabel51"].value;
-    this.updaterequestdata.lel_measurement = this.RequestForm.controls["floatLabel52"].value;
-    this.updaterequestdata.all_equipment = this.RequestForm.controls["floatLabel53"].value;
-    this.updaterequestdata.exit_conditions = this.RequestForm.controls["floatLabel54"].value;
-    this.updaterequestdata.communication_emergency = this.RequestForm.controls["floatLabel55"].value;
-    this.updaterequestdata.rescue_equipments = this.RequestForm.controls["floatLabel56"].value;
-    this.updaterequestdata.space_ventilation = this.RequestForm.controls["floatLabel57"].value;
-    this.updaterequestdata.oxygen_meter = this.RequestForm.controls["floatLabel58"].value;
+      this.updaterequestdata.working_confined_spaces = this.RequestForm.controls["CONFINEDSPACE"].value;
+      this.updaterequestdata.vapours_gases = this.RequestForm.controls["floatLabel51"].value;
+      this.updaterequestdata.lel_measurement = this.RequestForm.controls["floatLabel52"].value;
+      this.updaterequestdata.all_equipment = this.RequestForm.controls["floatLabel53"].value;
+      this.updaterequestdata.exit_conditions = this.RequestForm.controls["floatLabel54"].value;
+      this.updaterequestdata.communication_emergency = this.RequestForm.controls["floatLabel55"].value;
+      this.updaterequestdata.rescue_equipments = this.RequestForm.controls["floatLabel56"].value;
+      this.updaterequestdata.space_ventilation = this.RequestForm.controls["floatLabel57"].value;
+      this.updaterequestdata.oxygen_meter = this.RequestForm.controls["floatLabel58"].value;
 
-    // work_in_atex_area
+      // work_in_atex_area
 
-    this.updaterequestdata.work_in_atex_area = this.RequestForm.controls["ATEXAREA"].value;
-    this.updaterequestdata.ex_area_downgraded = this.RequestForm.controls["floatLabel59"].value;
-    this.updaterequestdata.atmospheric_tester = this.RequestForm.controls["floatLabel60"].value;
-    this.updaterequestdata.flammable_materials = this.RequestForm.controls["floatLabel61"].value;
-    this.updaterequestdata.potential_explosive = this.RequestForm.controls["floatLabel62"].value;
-    this.updaterequestdata.oxygen_meter_confined_spaces = this.RequestForm.controls["floatLabel63"].value;
+      this.updaterequestdata.work_in_atex_area = this.RequestForm.controls["ATEXAREA"].value;
+      this.updaterequestdata.ex_area_downgraded = this.RequestForm.controls["floatLabel59"].value;
+      this.updaterequestdata.atmospheric_tester = this.RequestForm.controls["floatLabel60"].value;
+      this.updaterequestdata.flammable_materials = this.RequestForm.controls["floatLabel61"].value;
+      this.updaterequestdata.potential_explosive = this.RequestForm.controls["floatLabel62"].value;
+      this.updaterequestdata.oxygen_meter_confined_spaces = this.RequestForm.controls["floatLabel63"].value;
 
-    // <!-- FACILITIES LOTO start -->
+      // <!-- FACILITIES LOTO start -->
 
-    this.updaterequestdata.securing_facilities = this.RequestForm.controls["FACILITIESLOTO"].value;
-    this.updaterequestdata.loto_facilities = this.RequestForm.controls["floatLabel64"].value;
-    this.updaterequestdata.system_depressurised = this.RequestForm.controls["floatLabel65"].value;
-    this.updaterequestdata.system_drained = this.RequestForm.controls["system_drained"].value;
-    this.updaterequestdata.passive_pause_other = this.RequestForm.controls["floatLabel67"].value;
-    this.updaterequestdata.electricity_have_isulation = this.RequestForm.controls["floatLabel68"].value;
-    this.updaterequestdata.covered_or_secured = this.RequestForm.controls["floatLabel69"].value;
-    this.updaterequestdata.people_electrician_certification = this.RequestForm.controls["floatLabel70"].value;
+      this.updaterequestdata.securing_facilities = this.RequestForm.controls["FACILITIESLOTO"].value;
+      this.updaterequestdata.loto_facilities = this.RequestForm.controls["floatLabel64"].value;
+      this.updaterequestdata.system_depressurised = this.RequestForm.controls["floatLabel65"].value;
+      this.updaterequestdata.system_drained = this.RequestForm.controls["system_drained"].value;
+      this.updaterequestdata.passive_pause_other = this.RequestForm.controls["floatLabel67"].value;
+      this.updaterequestdata.electricity_have_isulation = this.RequestForm.controls["floatLabel68"].value;
+      this.updaterequestdata.covered_or_secured = this.RequestForm.controls["floatLabel69"].value;
+      this.updaterequestdata.people_electrician_certification = this.RequestForm.controls["floatLabel70"].value;
 
-    // excavation_works
+      // excavation_works
 
-    this.updaterequestdata.excavation_works = this.RequestForm.controls["ExcavationWorks"].value;
-    this.updaterequestdata.excavation_segregated = this.RequestForm.controls["floatLabel71"].value;
-    this.updaterequestdata.nn_standards = this.RequestForm.controls["floatLabel72"].value;
-    this.updaterequestdata.excavation_shoring = this.RequestForm.controls["excavation_shoring"].value;
-    this.updaterequestdata.danish_regulation = this.RequestForm.controls["floatLabel74"].value;
-    this.updaterequestdata.safe_access_and_egress = this.RequestForm.controls["floatLabel75"].value;
-    this.updaterequestdata.correctly_sloped = this.RequestForm.controls["floatLabel76"].value;
-    this.updaterequestdata.inspection_dates = this.RequestForm.controls["floatLabel77"].value;
-    this.updaterequestdata.marked_drawings = this.RequestForm.controls["floatLabel78"].value;
-    this.updaterequestdata.underground_areas_cleared = this.RequestForm.controls["floatLabel79"].value;
+      this.updaterequestdata.excavation_works = this.RequestForm.controls["ExcavationWorks"].value;
+      this.updaterequestdata.excavation_segregated = this.RequestForm.controls["floatLabel71"].value;
+      this.updaterequestdata.nn_standards = this.RequestForm.controls["floatLabel72"].value;
+      this.updaterequestdata.excavation_shoring = this.RequestForm.controls["excavation_shoring"].value;
+      this.updaterequestdata.danish_regulation = this.RequestForm.controls["floatLabel74"].value;
+      this.updaterequestdata.safe_access_and_egress = this.RequestForm.controls["floatLabel75"].value;
+      this.updaterequestdata.correctly_sloped = this.RequestForm.controls["floatLabel76"].value;
+      this.updaterequestdata.inspection_dates = this.RequestForm.controls["floatLabel77"].value;
+      this.updaterequestdata.marked_drawings = this.RequestForm.controls["floatLabel78"].value;
+      this.updaterequestdata.underground_areas_cleared = this.RequestForm.controls["floatLabel79"].value;
 
-    // using_cranes_or_lifting
+      // using_cranes_or_lifting
 
-    this.updaterequestdata.using_cranes_or_lifting = this.RequestForm.controls["CraneLifting"].value;
-    this.updaterequestdata.appointed_person = this.RequestForm.controls["floatLabel80"].value;
-    this.updaterequestdata.vendor_supplier = this.RequestForm.controls["floatLabel81"].value;
-    this.updaterequestdata.lift_plan = this.RequestForm.controls["floatLabel82"].value;
-    this.updaterequestdata.supplied_and_inspected = this.RequestForm.controls["floatLabel83"].value;
-    this.updaterequestdata.legal_required_certificates = this.RequestForm.controls["floatLabel84"].value;
-    this.updaterequestdata.prapared_lifting = this.RequestForm.controls["floatLabel85"].value;
-    this.updaterequestdata.lifting_task_fenced = this.RequestForm.controls["floatLabel86"].value;
-    this.updaterequestdata.overhead_risks = this.RequestForm.controls["floatLabel87"].value;
-
-
-    this.updaterequestdata.visible_clothing = this.RequestForm.controls["VisableClothing"].value;
-    this.updaterequestdata.safety_shoes = this.RequestForm.controls["SafetyShoes"].value;
-    this.updaterequestdata.helmet = this.RequestForm.controls["Helmet"].value;
-
-    this.updaterequestdata.description_of_activity = this.RequestForm.controls["descriptActivity"].value;
-    this.updaterequestdata.specific_gloves = this.RequestForm.controls["specific_gloves"].value;
-    this.updaterequestdata.eye_protection = this.RequestForm.controls["eye_protection"].value;
-    this.updaterequestdata.fall_protection = this.RequestForm.controls["fall_protection"].value;
-    this.updaterequestdata.hearing_protection = this.RequestForm.controls["hearing_protection"].value;
-    this.updaterequestdata.respiratory_protection = this.RequestForm.controls["respiratory_protection"].value;
-    this.updaterequestdata.other_ppe = this.RequestForm.controls["other_ppe"].value;
-    this.updaterequestdata.other_conditions_input = this.RequestForm.controls["other_conditions_input"].value;
-
-    this.updaterequestdata.Power_Off_Required =
-      this.RequestForm.controls["Poweroff"].value;
-    this.updaterequestdata.Number_Of_Workers =
-      this.RequestForm.controls["peopleinvalidcount"].value;
-    this.updaterequestdata.Notes = this.RequestForm.controls["Note"].value;
-    this.updaterequestdata.Safety_Precautions =
-      this.RequestForm.controls["Safetyprecaustion"].value.toString();
-
-    this.updaterequestdata.rams_file = this.RequestForm.controls["rams_file"].value;
-
-    let formData = new FormData();
-
-    for (const [key, value] of Object.entries(this.updaterequestdata)) {
-      formData.append(key, value as string); // Ensure values are strings if needed
-    }
-
-    formData.append("rams_file", JSON.stringify(this.updaterequestdata.rams_file))
+      this.updaterequestdata.using_cranes_or_lifting = this.RequestForm.controls["CraneLifting"].value;
+      this.updaterequestdata.appointed_person = this.RequestForm.controls["floatLabel80"].value;
+      this.updaterequestdata.vendor_supplier = this.RequestForm.controls["floatLabel81"].value;
+      this.updaterequestdata.lift_plan = this.RequestForm.controls["floatLabel82"].value;
+      this.updaterequestdata.supplied_and_inspected = this.RequestForm.controls["floatLabel83"].value;
+      this.updaterequestdata.legal_required_certificates = this.RequestForm.controls["floatLabel84"].value;
+      this.updaterequestdata.prapared_lifting = this.RequestForm.controls["floatLabel85"].value;
+      this.updaterequestdata.lifting_task_fenced = this.RequestForm.controls["floatLabel86"].value;
+      this.updaterequestdata.overhead_risks = this.RequestForm.controls["floatLabel87"].value;
 
 
-    this.requestsserivies.UpdateRequest(formData as unknown as EditRequestDto).subscribe(
-      (res) => {
-        this.spinner = false;
-        this.openSnackBar("Request Updated Successfully");
-        this.requestsserivies.SelectedRequestData = {};
-        this.route.navigateByUrl("/user/list-request");
-        window.location.reload();
-      },
-      (error) => {
-        this.openSnackBar("Something went wrong. Plz try again later...");
+      this.updaterequestdata.visible_clothing = this.RequestForm.controls["VisableClothing"].value;
+      this.updaterequestdata.safety_shoes = this.RequestForm.controls["SafetyShoes"].value;
+      this.updaterequestdata.helmet = this.RequestForm.controls["Helmet"].value;
+
+      this.updaterequestdata.description_of_activity = this.RequestForm.controls["descriptActivity"].value;
+      this.updaterequestdata.specific_gloves = this.RequestForm.controls["specific_gloves"].value;
+      this.updaterequestdata.eye_protection = this.RequestForm.controls["eye_protection"].value;
+      this.updaterequestdata.fall_protection = this.RequestForm.controls["fall_protection"].value;
+      this.updaterequestdata.hearing_protection = this.RequestForm.controls["hearing_protection"].value;
+      this.updaterequestdata.respiratory_protection = this.RequestForm.controls["respiratory_protection"].value;
+      this.updaterequestdata.other_ppe = this.RequestForm.controls["other_ppe"].value;
+      this.updaterequestdata.other_conditions_input = this.RequestForm.controls["other_conditions_input"].value;
+
+      this.updaterequestdata.Power_Off_Required =
+        this.RequestForm.controls["Poweroff"].value;
+      this.updaterequestdata.Number_Of_Workers =
+        this.RequestForm.controls["peopleinvalidcount"].value;
+      this.updaterequestdata.Notes = this.RequestForm.controls["Note"].value;
+      this.updaterequestdata.Safety_Precautions =
+        this.RequestForm.controls["Safetyprecaustion"].value.toString();
+
+      this.updaterequestdata.rams_file = this.RequestForm.controls["rams_file"].value;
+
+      let formData = new FormData();
+
+      for (const [key, value] of Object.entries(this.updaterequestdata)) {
+        formData.append(key, value as string); // Ensure values are strings if needed
       }
-    );
+
+      formData.append("rams_file", JSON.stringify(this.updaterequestdata.rams_file))
+
+
+      this.requestsserivies.UpdateRequest(formData as unknown as EditRequestDto).subscribe(
+        (res) => {
+          this.spinner = false;
+          this.openSnackBar("Request Updated Successfully");
+          this.requestsserivies.SelectedRequestData = {};
+          this.route.navigateByUrl("/user/list-request");
+          window.location.reload();
+        },
+        (error) => {
+          this.openSnackBar("Something went wrong. Plz try again later...");
+        }
+      );
+    }
   }
 
 
@@ -3390,27 +3409,32 @@ export class NewRequestComponent implements OnInit {
   }
 
   openPopUpForDrafToHold() {
-
-    let title =
-      "Can you confirm the RAMS for this work is approved by ConM/HSE?";
-
-    let dialogRef: MatDialogRef<any> = this.dialog.open(
-      RequestSaveOptionsDialogComponent,
-      {
-        width: "500px",
-        height: "200px",
-        disableClose: false,
-        data: { title: title, listitemsstatus: false },
-      }
-    );
-    dialogRef.afterClosed().subscribe((result) => {
-      this.RequestForm.controls["Status"].setValue(result.data);
-
-      this.Requestdata.Request_status = result.data;
-      this.UpdateRequestDraftToHold(result.data);
-      this.route.navigateByUrl("/user/list-request");
-      //this.userservices.RequestLists.push(this.RequestForm.value);
+    (Object as any).keys(this.RequestForm.controls).forEach((control) => {
+      this.RequestForm.get(`${control}`).updateValueAndValidity();
+      this.RequestForm.get(`${control}`).markAsTouched();
     });
+    if (this.RequestForm.valid) {
+      let title =
+        "Can you confirm the RAMS for this work is approved by ConM/HSE?";
+
+      let dialogRef: MatDialogRef<any> = this.dialog.open(
+        RequestSaveOptionsDialogComponent,
+        {
+          width: "500px",
+          height: "200px",
+          disableClose: false,
+          data: { title: title, listitemsstatus: false },
+        }
+      );
+      dialogRef.afterClosed().subscribe((result) => {
+        this.RequestForm.controls["Status"].setValue(result.data);
+
+        this.Requestdata.Request_status = result.data;
+        this.UpdateRequestDraftToHold(result.data);
+        this.route.navigateByUrl("/user/list-request");
+        //this.userservices.RequestLists.push(this.RequestForm.value);
+      });
+    }
   }
 
   private _filter(value: string): string[] {
@@ -3778,23 +3802,23 @@ export class NewRequestComponent implements OnInit {
     // roomarrstr = data["Room_Nos"].split(",");
     // this.RequestForm.controls['Room'].setValue(roomarrstr);
     this.RequestForm.controls["RoomType"].setValue(data["Room_Type"]);
-   
-    if(data["Start_Time"] !== "00:00:00"){
+
+    if (data["Start_Time"] !== "00:00:00") {
       var starttimestr = data["Start_Time"].split(":");
 
       this.RequestForm.controls["StartTime"].setValue(
         starttimestr[0] + ":" + starttimestr[1]
       );
-    }else{
+    } else {
       this.RequestForm.controls["StartTime"].setValue(null);
     }
 
-    if(data["End_Time"] !== "00:00:00"){
+    if (data["End_Time"] !== "00:00:00") {
       var endtimestr = data["End_Time"].split(":");
       this.RequestForm.controls["EndTime"].setValue(
         endtimestr[0] + ":" + endtimestr[1]
       );
-    }else{
+    } else {
       this.RequestForm.controls["EndTime"].setValue(null);
     }
 
@@ -3808,7 +3832,7 @@ export class NewRequestComponent implements OnInit {
     this.RequestForm.controls["floatLabel11"].setValue(data["affecting_other_contractors"]);
     this.RequestForm.controls["floatLabel12"].setValue(data["other_conditions"]);
     this.RequestForm.controls["other_conditions_input"].setValue(data["other_conditions_input"]);
-    this.setAndRemoveValidators(data["other_conditions_input"],'Are there other conditions that')
+    this.setAndRemoveValidators(data["other_conditions_input"], 'Are there other conditions that')
     this.RequestForm.controls["floatLabel13"].setValue(data["lighting_begin_work"]);
     this.RequestForm.controls["floatLabel14"].setValue(data["specific_risks"]);
     this.RequestForm.controls["floatLabel15"].setValue(data["environment_ensured"]);

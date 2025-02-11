@@ -117,12 +117,14 @@
     </ng-container>
 
     <div mat-dialog-actions>
-      <button class="butns-grp" mat-raised-button color="primary" mat-dialog-close (click)="Changestatus('Opened')"
+      <button class="butns-grp" mat-raised-button color="primary" mat-dialog-close (click)="ChangestatusToOpen('Opened')"
         [disabled]="!statusOpenForm.valid">Open</button>
       <button class="butns-grp" mat-raised-button color="primary" mat-dialog-close
-        (click)="Changestatus('Rejected')">Reject</button>
+        (click)="ChangestatusToOpen('Rejected')">Reject</button>
 
     </div>
+
+
 
   </form>
 </div>
@@ -204,7 +206,7 @@
     <div style="text-align: center; margin-top: 40px;">
       <button mat-flat-button class="submit-btn-sty" mat-dialog-close (click)="Changestatusbysubcontractor('Opened')"
         color="primary">Update Status</button>
-      <button mat-flat-button class="submit-btn-sty" mat-dialog-close (click)="Changestatusbysubcontractor('Closed')"
+        <button mat-flat-button class="submit-btn-sty" mat-dialog-close (click)="Changestatusbysubcontractor1('Closed')"
         color="primary">Close Permit</button>
       <!-- <button mat-flat-button class="submit-btn-sty" mat-dialog-close color="primary">Close</button> -->
     </div>

@@ -89,6 +89,8 @@ export class ListRequestComponent implements OnInit {
 
   currentPage : any;
 
+  
+
   // setPage(pageinfo) {
   //   console.log("pagination", pageinfo);
   //   let pagedatainfo = {
@@ -509,9 +511,9 @@ export class ListRequestComponent implements OnInit {
           });
           this.paginationCount = res[1].count;
           console.log(this.paginationCount);
-          this.items = [];
-          this.items.length = 0;
-          this.items = filteritems;
+          // this.items = [];
+          // this.items.length = 0;
+          // this.items = filteritems;
         }
         else if (this.userdata['role'] == 'Observer') {
           this.IsNotSubCntr = false;

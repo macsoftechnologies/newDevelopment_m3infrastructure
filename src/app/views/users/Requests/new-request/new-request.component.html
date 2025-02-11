@@ -238,12 +238,13 @@
 
           </mat-grid-list>
 
-          <mat-grid-list cols="1" rowHeight="80px">
+          <mat-grid-list cols="1" rowHeight="100px">
             <mat-grid-tile>
               <mat-form-field class="full-width" appearance="outline">
                 <mat-label>Description of activity</mat-label>
-                <input matInput formControlName="descriptActivity" placeholder="Description of activity"
-                  [class.is-invalid]="RequestForm.get('descriptActivity').invalid && RequestForm.get('descriptActivity').touched" />
+                <textarea  matInput formControlName="descriptActivity" placeholder="Description of activity"
+                  [class.is-invalid]="RequestForm.get('descriptActivity').invalid && RequestForm.get('descriptActivity').touched">
+                  </textarea>
                 <mat-error class="error-message"
                   *ngIf="RequestForm.get('descriptActivity').invalid && RequestForm.get('descriptActivity').touched">Please
                   Enter descriptActivity</mat-error>
@@ -3004,14 +3005,14 @@
       Change to Hold
     </button>
   </div>
-  <div class="butns" *ngIf="subeditform">
+  <!-- <div class="butns" *ngIf="subeditform">
     <button class="butns-grp" mat-raised-button color="primary" (click)="SaveasDraft('Draft')">
       Save
     </button>
     <button class="butns-grp" mat-raised-button color="primary" (click)="openPopUpForDrafToHold()">
       Change to Hold
     </button>
-  </div>
+  </div> -->
 </div>
 <!-- <div class="form-container" [hidden]="isnewrequestcreated">
         <form id="input-form" [formGroup]="myForm" novalidate>
@@ -5561,7 +5562,13 @@
   </div>
 </div>
 
-<div class="butns" [hidden]="!editform" *ngIf="!subeditform">
+<!-- <div class="butns" [hidden]="!editform" *ngIf="!subeditform">
+  <button class="butns-grp" mat-raised-button color="primary" (click)="UpdateRequest()">
+    Update
+  </button>
+</div> -->
+
+<div class="butns" [hidden]="!editform" *ngIf="subeditform">
   <button class="butns-grp" mat-raised-button color="primary" (click)="UpdateRequest()">
     Update
   </button>

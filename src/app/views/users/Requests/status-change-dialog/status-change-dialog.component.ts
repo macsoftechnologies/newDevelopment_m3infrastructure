@@ -507,6 +507,81 @@ export class StatusChangeDialogComponent implements OnInit {
       if (this.statusApprovedForm.valid) {
         this.updaterequestdata.ConM_initials = this.statusApprovedForm.value.ConM_initials;
       }
+      // if (this.statusOpenForm.valid) {
+      //   this.updaterequestdata.ConM_initials1 = this.statusOpenForm.value.ConM_initials1;
+      //   this.updaterequestdata.name_of_the_fire_watcher1 = this.statusOpenForm.value.name_of_the_fire_watcher1;
+      //   this.updaterequestdata.phone_number_of_fire_watcher1 = this.statusOpenForm.value.phone_number_of_fire_watcher1;
+      //   formData.append('file', this.fileInput.files[0]);
+      // }
+      let formData = new FormData();
+      if (this.images1.length > 0) {
+        for (var i = 0; i < this.images1.length; i++) {
+          formData.append("Image1", this.images1[i]);
+        }
+      }
+      for (const [key, value] of Object.entries(this.updaterequestdata)) {
+        formData.append(key, value); // Ensure values are strings if needed
+      }
+
+      this.requestdataservice.UpdateRequest(formData as unknown as EditRequestDto).subscribe(
+        (x) => {
+          if (x.status == 200) {
+            this.openSnackBar("Request Status Updated Successfully");
+            // console.log("TEST", this.data.pagedatainfo.Start, this.data.pagedatainfo.Page)
+            window.location.reload();
+            this.ngOnInit();
+          }
+        },
+        (error) => {
+          this.openSnackBar("Something went wrong. Plz try again later...");
+        }
+
+      );
+
+    }
+  }
+
+  startTime() {
+
+  }
+
+  ChangestatusToOpen(statusdata){
+    (Object as any).keys(this.statusApprovedForm.controls).forEach((control) => {
+      this.statusApprovedForm.get(`${control}`).markAsTouched();
+    });
+    (Object as any).keys(this.statusOpenForm.controls).forEach((control) => {
+      this.statusOpenForm.get(`${control}`).markAsTouched();
+    });
+    console.log(statusdata, 'data')
+    var today = moment.tz("Europe/Copenhagen");
+    this.CurrenttimeNow = today.format('HH:mm:ss');
+  
+    // document.getElementById('watch1').innerHTML = today.format('DD/MM/YYYY');
+    var t = setTimeout(this.startTime, 500);
+    if (statusdata == "Closed") {
+      this.isclose = true;
+    } else {
+      this.isclose = false;
+      console.log(config.Denmarktz.split(" "));
+      const [currentDenmarkDate, currentDenmarkTime] = [
+        ...config.Denmarktz.split(" "),
+      ];
+
+      // this.updaterequestdata.denmark_time = [currentDenmarkDate, currentDenmarkTime];
+     
+      this.updaterequestdata.Request_status = statusdata;
+      // this.updaterequestdata.createdTime = this.CurrenttimeNow;
+
+      this.updaterequestdata.createdTime = [currentDenmarkDate, currentDenmarkTime];
+
+
+      // this.updaterequestdata.denmark_time = [currentDenmarkDate, currentDenmarkTime] ;
+
+      // console.log(this.updaterequestdata, "test data");
+
+      // console.log(this.updaterequestdata,"stats");
+
+   
       if (this.statusOpenForm.valid) {
         this.updaterequestdata.ConM_initials1 = this.statusOpenForm.value.ConM_initials1;
         // this.updaterequestdata.name_of_the_fire_watcher1 = this.statusOpenForm.value.name_of_the_fire_watcher1;
@@ -541,9 +616,6 @@ export class StatusChangeDialogComponent implements OnInit {
     }
   }
 
-  startTime() {
-
-  }
 
 
   Changestatusbysubcontractor(status) {
@@ -608,32 +680,55 @@ export class StatusChangeDialogComponent implements OnInit {
   }
 
   Changestatusbysubcontractor1(status) {
-
+    var today = moment.tz("Europe/Copenhagen");
+    this.CurrenttimeNow = today.format('HH:mm:ss');
+    console.log("Time now", this.CurrenttimeNow)
+    // document.getElementById('watch1').innerHTML = today.format('DD/MM/YYYY');
+    var t = setTimeout(this.startTime, 500);
+    console.log(config.Denmarktz.split(" "));
     const [currentDenmarkDate, currentDenmarkTime] = [
       ...config.Denmarktz.split(" "),
     ];
+    console.log(currentDenmarkTime);
+    console.log(currentDenmarkDate);
     const formData = new FormData();
     this.spinner = true;
     this.Close_Request.id = this.updaterequestdata.id;
     this.Close_Request.Request_status = status;
-    this.Close_Request.denmark_time = [currentDenmarkDate, currentDenmarkTime];
+    // this.Close_Request.createdTime = this.CurrenttimeNow;
+    this.Close_Request.createdTime = [currentDenmarkDate, currentDenmarkTime];
+    // this.Close_Request.denmark_time = [currentDenmarkDate, currentDenmarkTime];
 
+    // this.updaterequestdata.denmark_time = [currentDenmarkDate, currentDenmarkTime] ;
+    
     if (this.images.length > 0) {
       for (var i = 0; i < this.images.length; i++) {
         formData.append("Image[]", this.images[i]);
       }
     }
-
+    
+    // this.Close_Request.Image =  formData;
+    //  const formData = new FormData();
     formData.append("id", this.Close_Request.id);
     formData.append("Request_status", this.Close_Request.Request_status);
     formData.append("userId", this.userdata["id"]);
+    formData.append("createdTime", this.Close_Request.createdTime);
+    
+    if (this.statusUpdateForm.valid && this.updaterequestdata.Hot_work == 1) {
+      formData.append("h_heat_source", this.statusUpdateForm.value.h_heat_source);
+      formData.append("h_workplace_check", this.statusUpdateForm.value.h_workplace_check);
+      formData.append("h_fire_detectors", this.statusUpdateForm.value.h_fire_detectors);
+      formData.append("h_start_time", this.statusUpdateForm.value.h_start_time);
+      formData.append("h_end_time", this.statusUpdateForm.value.h_end_time);
+    }
+
+    console.log(this.statusUpdateForm, "form")
 
     this.requestdataservice.CloseRequest(formData).subscribe(
       (res) => {
         if (res.status == 200) {
           this.openSnackBar("Request Status Updated Successfully");
           this.spinner = false;
-          this.images = null;
           window.location.reload();
           this.ngOnInit();
         }
@@ -644,6 +739,7 @@ export class StatusChangeDialogComponent implements OnInit {
       }
     );
   }
+
 
   openSnackBar(msg) {
     this._snackBar.open(msg, "Close", {
