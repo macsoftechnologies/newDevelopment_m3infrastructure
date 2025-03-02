@@ -505,7 +505,7 @@ export class PlansComponent implements OnInit {
         // )
         this.DownloadExcelData.push(
           {
-            PermitNo: x["PermitNo"], ContractorName: x["subContractorName"], sub_Contractor_Name: x['subContractorName'], Building_Name: x["building_name"], Level: x["Room_Type"],
+            PermitNo: x["PermitNo"], ContractorName: x["subContractorName"], Sub_Contractor_Name: x['new_sub_contractor'], Building_Name: x["building_name"], Level: x["Room_Type"],
             Room_Nos: x['Room_Nos'], Activity: x["Activity"],description_of_activity: x["description_of_activity"], Rams_Number: x["rams_number"],HRAs: this.printHRAS(x),Auth:x[""],Comment: x[""],
             Start_Time: x["Start_Time"], End_Time: x["End_Time"], Request_status: x["Request_status"],
             Notes: x["Notes"], Working_Date: x["Working_Date"], Day: this.days_Names[day], 

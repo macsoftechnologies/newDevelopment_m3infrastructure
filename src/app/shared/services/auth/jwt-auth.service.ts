@@ -27,6 +27,9 @@ export class JwtAuthService {
   signingIn: Boolean;
   JWT_TOKEN = "";
   APP_USER = "EGRET_USER";
+  userType: any;
+  secretKey: any;
+  LocalData: any;
 
   constructor(
     private ls: LocalStoreService,
@@ -117,7 +120,7 @@ export class JwtAuthService {
   public signout() {
     this.setUserAndToken(null, false);
     this.ls.setItem("JWT_TOKEN", null);
-
+    localStorage.clear();
     this.router.navigateByUrl("sessions/signin");
   }
 
@@ -150,4 +153,20 @@ export class JwtAuthService {
     this.ls.setItem("JWT_TOKEN", this.JWT_TOKEN);
     this.ls.setItem(this.APP_USER, user);
   }
+
+  getLocalData(userType,secretKey) {
+    // console.log('jwtauth....', userType, secretKey);
+    this.userType = userType;
+    this.secretKey = secretKey;
+  }
+
+  accessData() {
+    // console.log('jwtaccess......', this.userType, this.secretKey);
+    this.LocalData = {
+      userType : this.userType,
+      secretKey : this.secretKey
+    };
+    return this.LocalData;
+  }
+  
 }

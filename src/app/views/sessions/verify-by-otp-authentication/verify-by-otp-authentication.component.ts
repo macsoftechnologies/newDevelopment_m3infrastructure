@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { JwtAuthService } from 'app/shared/services/auth/jwt-auth.service';
 import { VerifyotpService } from 'app/shared/services/verifyotp.service';
 // import {  Router } from '@angular/router';
 
@@ -16,7 +17,7 @@ export class VerifyByOtpAuthenticationComponent implements OnInit {
   isUserLoggedIn: any;
   otpinfo: { user_id: any; otp: any; };
 
-  constructor(private otpService : VerifyotpService, private router: Router,private _snackBar: MatSnackBar) {
+  constructor(private otpService : VerifyotpService, private router: Router,private _snackBar: MatSnackBar,private jwtAuth: JwtAuthService,) {
     this.otpForm = new FormGroup({
       verify_Otp: new FormControl('', Validators.required),
     })
@@ -38,6 +39,10 @@ export class VerifyByOtpAuthenticationComponent implements OnInit {
 
     this.otpService.VerifyOtp(this.otpinfo).subscribe(res => {
       if (res["status"] == true) {
+        const authData = this.jwtAuth.accessData();
+        // console.log("verifyotpresp...", authData);
+           localStorage.setItem('UserType', authData.userType);
+           localStorage.setItem('secretkey', authData.secretKey);
         this.openSnackBar("OTP Verify Successfully");
         this.router.navigateByUrl("/user/dashboard");
       }
