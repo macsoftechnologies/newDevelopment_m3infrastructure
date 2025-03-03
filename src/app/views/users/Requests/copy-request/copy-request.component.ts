@@ -91,7 +91,7 @@ this.userdata=this.jwtauthservice.getUser();
 
     this.CopyRequest.Site_Id = this.data["payload"]["Site_Id"];
     this.CopyRequest.Special_Instructions = this.data["payload"]["Special_Instructions"];
-    // this.CopyRequest.Start_Time = this.data["payload"]["Start_Time"];
+    this.CopyRequest.Start_Time = this.data["payload"]["Start_Time"];
     this.CopyRequest.Sub_Contractor_Id = this.data["payload"]["Sub_Contractor_Id"];
     this.CopyRequest.teamId = this.data["payload"]["teamId"];
     this.CopyRequest.Tools = this.data["payload"]["Tools"];
@@ -108,7 +108,7 @@ this.userdata=this.jwtauthservice.getUser();
     this.CopyRequest.Company_Name = this.data["payload"]["Company_Name"];
     this.CopyRequest.Crane_Number = this.data["payload"]["Crane_Number"];
     this.CopyRequest.Crane_Requested = this.data["payload"]["Crane_Requested"];
-    // this.CopyRequest.End_Time = this.data["payload"]["End_Time"];
+    this.CopyRequest.End_Time = this.data["payload"]["End_Time"];
     this.CopyRequest.Floor_Id = this.data["payload"]["Floor_Id"];
     this.CopyRequest.Foreman = this.data["payload"]["Foreman"];
     this.CopyRequest.Foreman_Phone_Number = this.data["payload"]["Foreman_Phone_Number"];

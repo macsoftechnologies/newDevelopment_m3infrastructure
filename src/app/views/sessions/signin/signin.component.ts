@@ -62,7 +62,7 @@ export class SigninComponent implements OnInit, AfterViewInit, OnDestroy {
     this.progressBar.mode = 'indeterminate';    
     this.jwtAuth.signin(signinData.username, signinData.password)
     .subscribe(response => {
-      this.jwtAuth.getLocalData(response?.userType,'m3north' )
+      this.jwtAuth.getLocalData(response?.userType,'m3infrastructure' )
       // this.userType = localStorage.setItem('UserType', response?.userType);
       // this.secretKey = localStorage.setItem('secretkey', 'm3north');
       if(response["status"]==false)
