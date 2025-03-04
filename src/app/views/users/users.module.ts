@@ -52,6 +52,7 @@ import { NotificationLogsComponent } from './notification-logs/notification-logs
 import { CatDialogComponent } from './cat-dialog/cat-dialog.component';
 import { DeleteCatDialogComponentComponent } from './delete-cat-dialog-component/delete-cat-dialog-component.component';
 import { LogsHistoryComponent } from './logs-history/logs-history.component';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
   declarations: [DashboardComponent, NewRequestComponent, ListRequestComponent, NotificationsComponent, PlansComponent, ListPopupComponent, ListPlansComponent, RequestSaveOptionsDialogComponent, EditRequestComponent, CopyRequestComponent, StatusChangeDialogComponent, DocsComponent, CategoryComponent, NotificationLogsComponent, CatDialogComponent, DeleteCatDialogComponentComponent, LogsHistoryComponent],
@@ -100,6 +101,7 @@ import { LogsHistoryComponent } from './logs-history/logs-history.component';
   
   providers: [
     DatePipe,
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' } // Sets Monday as the first date
     
   ],
   entryComponents: [ListPopupComponent, CatDialogComponent]

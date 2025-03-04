@@ -60,7 +60,7 @@ export class NotificationsComponent implements OnInit {
             this.spinner=false;
         });
     }
-    else if (this.userdata["role"] == "Admin") {
+    else if (this.userdata["role"] == "Admin" || "Department") {
      
       this.reqservice.GetAllRequests().subscribe(res=>
         {
