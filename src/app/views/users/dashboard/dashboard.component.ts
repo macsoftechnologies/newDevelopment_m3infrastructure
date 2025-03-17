@@ -89,7 +89,7 @@ export class DashboardComponent implements OnInit, OnInit, AfterViewInit {
 
   ngAfterViewInit() { }
   ngOnInit() {
-    this.userType = localStorage.getItem('UserType')
+    this.userType = localStorage.getItem('m3infrastructure_UserType')
      // Get DashBoard Counts From Api
      this.getCounts()
 

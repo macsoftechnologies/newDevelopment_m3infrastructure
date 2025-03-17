@@ -309,6 +309,7 @@ export class EditRequestDto {
     people_electrician_certification: any;
     ConM_initials: any;
     ConM_initials1: any
+    reject_reason: any;
     electricity_have_insulation: any;
     name_of_the_fire_watcher1: any;
     phone_number_of_fire_watcher1: any;
@@ -317,6 +318,7 @@ export class EditRequestDto {
     system_drained: any;
     excavation_shoring: any;
     rams_number: any;
+    cancel_reason: any;
 }
 
 export class DeleteRequestDto {
@@ -385,6 +387,7 @@ export class UpdateClose_Status {
   h_fire_detectors: any;
   h_start_time: any;
   h_end_time: any;
+  close_note: any;
     //files:string  []  =  [];
 }
 

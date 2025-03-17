@@ -342,13 +342,17 @@
             <mat-grid-tile>
               <mat-form-field class="full-width" appearance="outline">
                 <mat-label>End Time</mat-label>
-                <input matInput [ngxTimepicker]="endTime" [format]="24" placeholder="End Time" formControlName="EndTime"
+                <input matInput [ngxTimepicker]="endTime" [format]="24" placeholder="End Time" formControlName="EndTime" (change)="onEndTimeChange()"
                   [class.is-invalid]="RequestForm.get('EndTime').invalid && RequestForm.get('EndTime').touched" />
-                <mat-error class="error-message"
-                  *ngIf="RequestForm.get('EndTime').invalid && RequestForm.get('EndTime').touched">Please select the
-                  EndTime</mat-error>
+                  <ngx-material-timepicker #endTime [minutesGap]="5"></ngx-material-timepicker>
+                 <mat-error *ngIf="RequestForm.get('EndTime').hasError('required')">
+                  End Time is required
+                </mat-error>
+                <mat-error *ngIf="RequestForm.get('EndTime').hasError('invalidEndTime')">
+                  End Time should be greater than Start Time
+                </mat-error>
               </mat-form-field>
-              <ngx-material-timepicker #endTime [minutesGap]="5"></ngx-material-timepicker>
+              
             </mat-grid-tile>
           </mat-grid-list>
           <!-- <mat-grid-list cols="3" rowHeight="80px" *ngIf="Assigneditform">

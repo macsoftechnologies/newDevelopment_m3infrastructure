@@ -26,7 +26,7 @@ export class JwtAuthService {
   user$ = (new BehaviorSubject<User>(this.user));
   signingIn: Boolean;
   JWT_TOKEN = "";
-  APP_USER = "EGRET_USER";
+  APP_USER = "m3infrastructure_EGRET_USER";
   userType: any;
   secretKey: any;
   LocalData: any;
@@ -119,8 +119,12 @@ export class JwtAuthService {
 
   public signout() {
     this.setUserAndToken(null, false);
-    this.ls.setItem("JWT_TOKEN", null);
-    localStorage.clear();
+    // this.ls.setItem("JWT_TOKEN", null);
+    // localStorage.clear();
+    localStorage.removeItem('m3infrastructure_EGRET_USER');
+    localStorage.removeItem('m3infrastructure_JWT_TOKEN');
+    localStorage.removeItem('m3infrastructure_UserType');
+    localStorage.removeItem('m3infrastructure_secretkey');
     this.router.navigateByUrl("sessions/signin");
   }
 
@@ -130,7 +134,7 @@ export class JwtAuthService {
   }
 
   getJwtToken() {
-    return this.ls.getItem("JWT_TOKEN");
+    return this.ls.getItem("m3infrastructure_JWT_TOKEN");
   }
   getUser() {
     return this.ls.getItem(this.APP_USER);
@@ -150,7 +154,7 @@ export class JwtAuthService {
     
     this.user = user;
     this.user$.next(user);
-    this.ls.setItem("JWT_TOKEN", this.JWT_TOKEN);
+    this.ls.setItem("m3infrastructure_JWT_TOKEN", this.JWT_TOKEN);
     this.ls.setItem(this.APP_USER, user);
   }
 

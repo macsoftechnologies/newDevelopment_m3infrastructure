@@ -25,7 +25,7 @@ export class VerifyByOtpAuthenticationComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.isUserLoggedIn = JSON.parse(localStorage.getItem('EGRET_USER'));
+    this.isUserLoggedIn = JSON.parse(localStorage.getItem('m3infrastructure_EGRET_USER'));
   }
 
   onSubmit(){
@@ -41,8 +41,8 @@ export class VerifyByOtpAuthenticationComponent implements OnInit {
       if (res["status"] == true) {
         const authData = this.jwtAuth.accessData();
         // console.log("verifyotpresp...", authData);
-           localStorage.setItem('UserType', authData.userType);
-           localStorage.setItem('secretkey', authData.secretKey);
+           localStorage.setItem('m3infrastructure_UserType', authData.userType);
+           localStorage.setItem('m3infrastructure_secretkey', authData.secretKey);
         this.openSnackBar("OTP Verify Successfully");
         this.router.navigateByUrl("/user/dashboard");
       }

@@ -7,6 +7,7 @@ import {
   Validators,
   FormBuilder,
   FormGroup,
+  AbstractControl,
 } from "@angular/forms";
 import { Router } from "@angular/router";
 import { DatePipe } from "@angular/common";
@@ -682,6 +683,8 @@ export class NewRequestComponent implements OnInit {
 
     ConM_initials: null,
     ConM_initials1: null,
+    cancel_reason: null,
+    reject_reason: null,
     name_of_the_fire_watcher1: null,
     phone_number_of_fire_watcher1: null,
     denmark_time: null,
@@ -1638,7 +1641,7 @@ export class NewRequestComponent implements OnInit {
       SafetyShoes: [''],
       Helmet: [''],
       // mandatoryCheck: ["", Validators.required],
-      descriptActivity: [""],
+      descriptActivity: ["", Validators.required],
       other_conditions_input: ["", Validators.required],
       specific_gloves: ["",],
       eye_protection: ["", Validators.required],
@@ -1656,7 +1659,8 @@ export class NewRequestComponent implements OnInit {
       rams_file: ["",]
       //Departconfs:this.departconfControl,
       //RequiredDocument:this.RequiredDocumentControl
-    });
+    },
+    { validators: this.endTimeValidator });
 
     this.myForm = this.fb.group({});
 
@@ -1757,6 +1761,27 @@ export class NewRequestComponent implements OnInit {
       this.EditFormDataBinding(this.data["payload"]);
     }
     this.name = "site";
+  }
+
+  endTimeValidator(control: AbstractControl) {
+    const startTime = control.get('StartTime')?.value;
+    const endTime = control.get('EndTime')?.value;
+
+    if (startTime && endTime) {
+      const start = parseInt(startTime.replace(':', ''), 10);
+      const end = parseInt(endTime.replace(':', ''), 10);
+
+      if (end <= start) {
+        control.get('EndTime')?.setErrors({ invalidEndTime: true });
+      } else {
+        control.get('EndTime')?.setErrors(null);
+      }
+    }
+    return null;
+  }
+
+  onEndTimeChange() {
+    this.RequestForm.get('EndTime')?.updateValueAndValidity();
   }
 
   filter(val: string) {

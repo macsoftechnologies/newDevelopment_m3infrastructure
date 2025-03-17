@@ -14,9 +14,9 @@
 // //  star-rating styles (Used in Shop app)
 @import "~css-star-rating/css/star-rating.min.css";
 // // Data Table
-@import '~@swimlane/ngx-datatable/index.css';
+// @import '~@swimlane/ngx-datatable/index.css';
 @import '~@swimlane/ngx-datatable/themes/material.css';
-@import '~@swimlane/ngx-datatable/assets/icons.css';
+// @import '~@swimlane/ngx-datatable/assets/icons.css';
 // // Rich Text Editor
 @import '~quill/dist/quill.core.css';
 @import '~quill/dist/quill.snow.css';
@@ -69,9 +69,11 @@
 }
 .egret-navy .mat-chip.mat-standard-chip.status_closed{
     background-color: red !important;
+    color: #fff;
 }
 .egret-navy .mat-chip.mat-standard-chip.status_approved{
     background-color: green !important;
+    color: #fff;
 }
 .egret-navy .mat-chip.mat-standard-chip.status_opened{
     background-color: greenyellow !important;
@@ -81,5 +83,9 @@
 }
 .egret-navy .mat-chip.mat-standard-chip.status_rejected{
     background-color: #c30101 !important;
+    color: #fff;
+}
+.egret-navy .mat-chip.mat-standard-chip.status_cancelled{
+    background-color: #a00202 !important;
     color: #fff;
 }

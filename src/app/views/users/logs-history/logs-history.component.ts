@@ -30,7 +30,7 @@ export class LogsHistoryComponent implements OnInit {
 
   ngOnInit(): void {
     // this.GetAllLogsHistory();
-    this.isUserLoggedIn = JSON.parse(localStorage.getItem('EGRET_USER'));
+    this.isUserLoggedIn = JSON.parse(localStorage.getItem('m3infrastructure_EGRET_USER'));
     this.currentPage = 1;
 
     this.startValue = 1;

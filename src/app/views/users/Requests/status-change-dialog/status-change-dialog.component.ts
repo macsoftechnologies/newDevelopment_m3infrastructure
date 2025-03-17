@@ -171,7 +171,9 @@ export class StatusChangeDialogComponent implements OnInit {
     electricity_have_insulation: null,
 
     ConM_initials: null,
+    reject_reason: null,
     ConM_initials1: null,
+    cancel_reason: null,
     name_of_the_fire_watcher1: null,
     phone_number_of_fire_watcher1: null,
     denmark_time: null,
@@ -198,7 +200,7 @@ export class StatusChangeDialogComponent implements OnInit {
     h_fire_detectors: null,
     h_start_time: null,
     h_end_time: null,
-
+    close_note: null,
   };
   userdata: any = {};
 
@@ -228,15 +230,17 @@ export class StatusChangeDialogComponent implements OnInit {
       h_fire_detectors: new FormControl('', Validators.required),
       h_start_time: new FormControl('', Validators.required),
       h_end_time: new FormControl('', Validators.required),
+      close_note: new FormControl('', Validators.required),
     })
 
     this.statusApprovedForm = new FormGroup({
       ConM_initials: new FormControl('', Validators.required),
-
+      reject_reason: new FormControl('', Validators.required),
     })
 
     this.statusOpenForm = new FormGroup({
       ConM_initials1: new FormControl('', Validators.required),
+      cancel_reason: new FormControl('', Validators.required),
       // name_of_the_fire_watcher1: new FormControl('', Validators.required),
       // phone_number_of_fire_watcher1: new FormControl('', Validators.required),
     })
@@ -441,12 +445,14 @@ export class StatusChangeDialogComponent implements OnInit {
 
     // new add data
     this.updaterequestdata.ConM_initials = this.data["payload"]["ConM_initials"];
+    this.updaterequestdata.reject_reason = this.data["payload"]["reject_reason"];
 
     this.Close_Request.h_heat_source = this.data["payload"]["h_heat_source"];
     this.Close_Request.h_workplace_check = this.data["payload"]["ConM_initials"];
     this.Close_Request.h_fire_detectors = this.data["payload"]["ConM_initials"];
     this.Close_Request.h_start_time = this.data["payload"]["ConM_initials"];
     this.Close_Request.h_end_time = this.data["payload"]["ConM_initials"];
+    this.Close_Request.close_note = this.data["payload"]["close_note"];
 
 
     // this.updaterequestdata.denmark_time = this.data["payload"]["denmark_time"];
@@ -504,8 +510,11 @@ export class StatusChangeDialogComponent implements OnInit {
 
       // console.log(this.updaterequestdata,"stats");
 
-      if (this.statusApprovedForm.valid) {
+      if (this.statusApprovedForm.get('ConM_initials').valid) {
         this.updaterequestdata.ConM_initials = this.statusApprovedForm.value.ConM_initials;
+      }
+      if(this.statusApprovedForm.get('reject_reason').valid) {
+        this.updaterequestdata.reject_reason = this.statusApprovedForm.value.reject_reason;
       }
       // if (this.statusOpenForm.valid) {
       //   this.updaterequestdata.ConM_initials1 = this.statusOpenForm.value.ConM_initials1;
@@ -582,11 +591,14 @@ export class StatusChangeDialogComponent implements OnInit {
       // console.log(this.updaterequestdata,"stats");
 
    
-      if (this.statusOpenForm.valid) {
+      if (this.statusOpenForm.get('ConM_initials1').valid) {
         this.updaterequestdata.ConM_initials1 = this.statusOpenForm.value.ConM_initials1;
         // this.updaterequestdata.name_of_the_fire_watcher1 = this.statusOpenForm.value.name_of_the_fire_watcher1;
         // this.updaterequestdata.phone_number_of_fire_watcher1 = this.statusOpenForm.value.phone_number_of_fire_watcher1;
         // formData.append('file', this.fileInput.files[0]);
+      }
+      if (this.statusOpenForm.get('cancel_reason').valid) {
+        this.updaterequestdata.cancel_reason = this.statusOpenForm.value.cancel_reason;
       }
       let formData = new FormData();
       if (this.images1.length > 0) {
@@ -713,6 +725,7 @@ export class StatusChangeDialogComponent implements OnInit {
     formData.append("Request_status", this.Close_Request.Request_status);
     formData.append("userId", this.userdata["id"]);
     formData.append("createdTime", this.Close_Request.createdTime);
+    formData.append("close_note", this.statusUpdateForm.value.close_note);
     
     if (this.statusUpdateForm.valid && this.updaterequestdata.Hot_work == 1) {
       formData.append("h_heat_source", this.statusUpdateForm.value.h_heat_source);

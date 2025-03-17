@@ -47,6 +47,12 @@
           <th mat-header-cell *matHeaderCellDef> Permit No. </th>
           <td mat-cell *matCellDef="let row">  {{ row?.PermitNo }} </td>
         </ng-container>
+
+        <!-- Contractor Name Column -->
+        <ng-container matColumnDef="contractor_name">
+          <th mat-header-cell *matHeaderCellDef> Contractor Name </th>
+          <td mat-cell *matCellDef="let row"> {{row?.contractor_name}} </td>
+        </ng-container>        
       
         <!-- Name Column -->
         <ng-container matColumnDef="username">

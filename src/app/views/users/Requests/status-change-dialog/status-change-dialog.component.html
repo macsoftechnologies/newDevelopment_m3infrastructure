@@ -26,6 +26,27 @@
 
         </mat-form-field>
       </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field class="full-width">
+          <mat-label>Reason for Rejecting</mat-label>
+          <input
+            matInput
+            formControlName="reject_reason"
+            [class.is-invalid]="
+              statusApprovedForm.get('reject_reason').invalid &&
+              statusApprovedForm.get('reject_reason').touched
+            "
+          />
+          <mat-error
+            class="error-message"
+            *ngIf="
+              statusApprovedForm.get('reject_reason').invalid &&
+              statusApprovedForm.get('reject_reason').touched
+            "
+            >Please Select
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
     </mat-grid-list>
 
     <!-- <ng-container *ngIf="updaterequestdata.Hot_work == 1 && requestDatas == 'Hold'">
@@ -38,9 +59,11 @@
 <div mat-dialog-actions *ngIf="type=='operartor'">
 
   <button class="butns-grp" mat-raised-button color="primary" mat-dialog-close (click)="Changestatus('Approved')"
-    [disabled]="!statusApprovedForm.valid">Approve</button>
+  [disabled]="statusApprovedForm.get('ConM_initials').invalid ||
+          statusApprovedForm.get('ConM_initials').value.trim() === ''">Approve</button>
   <button class="butns-grp" mat-raised-button color="primary" mat-dialog-close
-    (click)="Changestatus('Rejected')">Reject</button>
+    (click)="Changestatus('Rejected')" [disabled]="statusApprovedForm.get('reject_reason').invalid ||
+          statusApprovedForm.get('reject_reason').value.trim() === ''">Reject</button>
 </div>
 
 
@@ -59,6 +82,27 @@
             Select
           </mat-error>
 
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field class="full-width">
+          <mat-label>Reason for cancelling</mat-label>
+          <input
+            matInput
+            formControlName="cancel_reason"
+            [class.is-invalid]="
+              statusOpenForm.get('cancel_reason').invalid &&
+              statusOpenForm.get('cancel_reason').touched
+            "
+          />
+          <mat-error
+            class="error-message"
+            *ngIf="
+              statusOpenForm.get('cancel_reason').invalid &&
+              statusOpenForm.get('cancel_reason').touched
+            "
+            >Please Select
+          </mat-error>
         </mat-form-field>
       </mat-grid-tile>
     </mat-grid-list>
@@ -118,9 +162,11 @@
 
     <div mat-dialog-actions>
       <button class="butns-grp" mat-raised-button color="primary" mat-dialog-close (click)="ChangestatusToOpen('Opened')"
-        [disabled]="!statusOpenForm.valid">Open</button>
+      [disabled]="statusOpenForm.get('ConM_initials1').invalid ||
+          statusOpenForm.get('ConM_initials1').value.trim() === ''">Open</button>
       <button class="butns-grp" mat-raised-button color="primary" mat-dialog-close
-        (click)="ChangestatusToOpen('Rejected')">Reject</button>
+        (click)="ChangestatusToOpen('Cancelled')" [disabled]="statusOpenForm.get('cancel_reason').invalid ||
+          statusOpenForm.get('cancel_reason').value.trim() === ''">Cancel</button>
 
     </div>
 
@@ -176,10 +222,12 @@
       <div class="time-picker-class">
         <h4>Check after hot work:</h4>
         <div class="cs-form">
+          <label>1hr time : </label>
           <input type="time" class="form-control" value="10:05 AM" formControlName="h_start_time"
             [class.is-invalid]="statusUpdateForm.get('h_start_time').invalid && statusUpdateForm.get('h_start_time').touched" />
         </div>
         <div class="cs-form">
+          <label>3hrs time : </label>
           <input type="time" class="form-control" value="10:05 AM" formControlName="h_end_time"
             [class.is-invalid]="statusUpdateForm.get('h_end_time').invalid && statusUpdateForm.get('h_end_time').touched" />
         </div>
@@ -203,11 +251,44 @@
       </div>
     </div>
 
+    <mat-grid-list cols="1" rowHeight="80px">
+      <mat-grid-tile>
+        <mat-form-field class="full-width">
+          <mat-label>Notes for Closing</mat-label>
+          <input
+            matInput
+            formControlName="close_note"
+            [class.is-invalid]="
+              statusUpdateForm.get('close_note').invalid &&
+              statusUpdateForm.get('close_note').touched
+            "
+          />
+          <mat-error
+            class="error-message"
+            *ngIf="
+              statusUpdateForm.get('close_note').invalid &&
+              statusUpdateForm.get('close_note').touched
+            "
+            >Please Select
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+
     <div style="text-align: center; margin-top: 40px;">
       <button mat-flat-button class="submit-btn-sty" mat-dialog-close (click)="Changestatusbysubcontractor('Opened')"
         color="primary">Update Status</button>
         <button mat-flat-button class="submit-btn-sty" mat-dialog-close (click)="Changestatusbysubcontractor1('Closed')"
-        color="primary">Close Permit</button>
+        color="primary" [disabled]="
+        statusUpdateForm.get('close_note').invalid ||
+        statusUpdateForm.get('close_note').value.trim() === '' ||
+        (updaterequestdata.Hot_work == 1 &&
+          (statusUpdateForm.get('h_heat_source').invalid ||
+            statusUpdateForm.get('h_workplace_check').invalid ||
+            statusUpdateForm.get('h_fire_detectors').invalid ||
+            statusUpdateForm.get('h_start_time').invalid ||
+            statusUpdateForm.get('h_end_time').invalid))
+      ">Close Permit</button>
       <!-- <button mat-flat-button class="submit-btn-sty" mat-dialog-close color="primary">Close</button> -->
     </div>
 

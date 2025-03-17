@@ -48,7 +48,7 @@ export class ListSubcontractorsComponent implements OnInit {
   GetAllSubContractors() {
     this.spinner = true;
     this.subcontr.GetAllSubContractors().subscribe(res => {
-      this.items = res["data"];
+      this.items = res["data"].sort((a, b) => a.subContractorName.localeCompare(b.subContractorName));
       this.spinner = false;
     });
   }

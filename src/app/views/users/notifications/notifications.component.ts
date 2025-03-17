@@ -71,7 +71,7 @@ export class NotificationsComponent implements OnInit {
             AllList=res["data"];
             AllList.forEach(x=>
               {
-                if(x["Request_status"]=='Approved' || x["Request_status"]=='Rejected' || x["Request_status"]=='Closed')
+                if(x["Request_status"]=='Approved' || x["Request_status"]=='Rejected' || x["Request_status"]=='Closed' || x["Request_status"]=='Cancelled' || x["Request_status"]=='Hold')
                 {
                   FilterList.push(x);
                 }

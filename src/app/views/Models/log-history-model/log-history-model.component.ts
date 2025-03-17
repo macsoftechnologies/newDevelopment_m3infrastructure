@@ -7,7 +7,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./log-history-model.component.css']
 })
 export class LogHistoryModelComponent implements OnInit {
-  displayedColumns: string[] = ['PermitNo', 'username', 'userType', 'requestType', 'createdTime'];
+  displayedColumns: string[] = ['PermitNo','contractor_name', 'username', 'userType', 'requestType', 'createdTime'];
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
     // console.log("log-details", data);
