@@ -216,7 +216,7 @@
             <mat-grid-tile>
               <div class="upload-div-sty">
                 <input #csvInput hidden="true" type="file" multiple onclick="this.value=null"
-                  (change)="csvInputChange($event)" accept=".pdf" />
+                  (change)="csvInputChange($event)" accept="*" />
                 <button mat-flat-button class="logo-btn-sty" color="primary" (click)="csvInput.click()">Add RAMS
                   Files</button>
                 <span *ngIf="!editform">{{images?.name}}</span>
@@ -350,6 +350,48 @@
                 </mat-error>
                 <mat-error *ngIf="RequestForm.get('EndTime').hasError('invalidEndTime')">
                   End Time should be greater than Start Time
+                </mat-error>
+              </mat-form-field>
+              
+            </mat-grid-tile>
+          </mat-grid-list>
+          <mat-grid-list  cols="3" rowHeight="80px">
+            <mat-grid-tile class="night-shift">
+              <label>
+                Is this a night shift?
+              </label> 
+              <mat-checkbox 
+                formControlName="night_shift"
+                [checked]="RequestForm.get('night_shift').value === 1"
+                (change)="toggleNightShift($event.checked)">
+                  Yes
+              </mat-checkbox>
+              
+              <mat-error class="error-message" *ngIf="RequestForm.get('night_shift').invalid && RequestForm.get('night_shift').touched">
+                Please confirm if this is a night shift
+              </mat-error>
+            </mat-grid-tile>
+            <!-- new date and new end time if night shift checked -->
+            <mat-grid-tile *ngIf="isnightshiftyes" class="night-shift-fields">
+              <mat-form-field class="datepikr full-width" appearance="outline">
+                <mat-label>New Date</mat-label>
+                <input matInput [min]="minDate" formControlName="newWorkDate" [max]="maxDate" [matDatepicker]="spicker"
+                  [class.is-invalid]="RequestForm.get('newWorkDate').invalid && RequestForm.get('newWorkDate').touched" />
+                <mat-datepicker-toggle matSuffix [for]="spicker"></mat-datepicker-toggle>
+                <mat-datepicker #spicker></mat-datepicker>
+                <mat-error class="error-message"
+                  *ngIf="RequestForm.get('newWorkDate').invalid && RequestForm.get('newWorkDate').touched">Please select the
+                  New Date</mat-error>
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile *ngIf="isnightshiftyes" class="night-shift-fields">
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>New End Time</mat-label>
+                <input matInput [ngxTimepicker]="endTime" [format]="24" placeholder="New End Time" formControlName="new_end_time"
+                  [class.is-invalid]="RequestForm.get('new_end_time').invalid && RequestForm.get('new_end_time').touched" />
+                  <ngx-material-timepicker #endTime [minutesGap]="5"></ngx-material-timepicker>
+                 <mat-error *ngIf="RequestForm.get('new_end_time').hasError('required')">
+                  New End Time is required
                 </mat-error>
               </mat-form-field>
               
@@ -2773,6 +2815,10 @@
                   <mat-radio-group formControlName="eye_protection">
                     <mat-radio-button [value]="1">Yes &nbsp;&nbsp;</mat-radio-button>
                     <mat-radio-button [value]="0">No</mat-radio-button>
+                    <mat-error class="error-message"
+                      *ngIf="RequestForm.get('eye_protection').invalid && RequestForm.get('eye_protection').touched">Please
+                      Select
+                    </mat-error>
                   </mat-radio-group>
                 </div>
               </div>
@@ -2788,6 +2834,10 @@
                   <mat-radio-group formControlName="fall_protection">
                     <mat-radio-button [value]="1">Yes &nbsp;&nbsp;</mat-radio-button>
                     <mat-radio-button [value]="0">No</mat-radio-button>
+                    <mat-error class="error-message"
+                      *ngIf="RequestForm.get('fall_protection').invalid && RequestForm.get('fall_protection').touched">Please
+                      Select
+                    </mat-error>
                   </mat-radio-group>
                 </div>
               </div>
@@ -2803,6 +2853,10 @@
                   <mat-radio-group formControlName="hearing_protection">
                     <mat-radio-button [value]="1">Yes &nbsp;&nbsp;</mat-radio-button>
                     <mat-radio-button [value]="0">No</mat-radio-button>
+                    <mat-error class="error-message"
+                      *ngIf="RequestForm.get('hearing_protection').invalid && RequestForm.get('hearing_protection').touched">Please
+                      Select
+                    </mat-error>
                   </mat-radio-group>
                 </div>
               </div>
@@ -2819,6 +2873,10 @@
                   <mat-radio-group formControlName="respiratory_protection">
                     <mat-radio-button [value]="1">Yes &nbsp;&nbsp;</mat-radio-button>
                     <mat-radio-button [value]="0">No</mat-radio-button>
+                    <mat-error class="error-message"
+                      *ngIf="RequestForm.get('respiratory_protection').invalid && RequestForm.get('respiratory_protection').touched">Please
+                      Select
+                    </mat-error>
                   </mat-radio-group>
                 </div>
                 <!-- {{RequestForm.get('respiratory_protection').value}} -->

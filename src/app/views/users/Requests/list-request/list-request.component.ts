@@ -308,6 +308,10 @@ export class ListRequestComponent implements OnInit {
       Statusid: 'Closed',
       Statusname: 'Closed',
     },
+    {
+      Statusid: 'Cancelled',
+      Statusname: 'Cancelled',
+    },
   ];
   TypeS: any[] = [
     {
@@ -338,6 +342,8 @@ export class ListRequestComponent implements OnInit {
     Start: null,
     End: null,
     Page: null,
+    hras: '',
+    taskSpecificPPE: '',
   };
 
   RequestsbyidDto: RequestBySubcontractorId = {
@@ -534,7 +540,16 @@ export class ListRequestComponent implements OnInit {
         }
       }
 
-      this.Contractors = res[2]['subcontractors'];
+      if (res[2] && Array.isArray(res[2]['subcontractors'])) {
+        this.Contractors = res[2]['subcontractors']
+          .filter(subcontractor => subcontractor?.subContractorName
+          ) // Remove undefined/null values
+          .sort((a, b) => a.subContractorName
+          .localeCompare(b.subContractorName
+          ));
+      } else {
+        this.Contractors = [];
+      }
       this.Sites = res[0]['data'];
       this.Getbuilding(this.Sites[0]['site_id']);
       this.Typeofactivitys = res[3]['activities'];
@@ -685,7 +700,8 @@ export class ListRequestComponent implements OnInit {
       this.RequestlistForm.controls['Keyword'].value;
     this.SearchRequest.PermitNo =
       this.RequestlistForm.controls['Permitnumber'].value;
-    this.SearchRequest.Site_Id = this.RequestlistForm.controls['Site'].value;
+    // this.SearchRequest.Site_Id = this.RequestlistForm.controls['Site'].value;
+    this.SearchRequest.Site_Id = '5';
     this.SearchRequest.Building_Id =
       this.RequestlistForm.controls['Building'].value;
     this.SearchRequest.Sub_Contractor_Id =
@@ -707,17 +723,35 @@ export class ListRequestComponent implements OnInit {
 
     if (mydate != null) {
       this.SearchRequest.fromDate = mydate;
+    } 
+    else {
+      this.SearchRequest.fromDate = '';
     }
     if (todate != null) {
       this.SearchRequest.toDate = todate;
+    } 
+    else {
+      this.SearchRequest.toDate = '';
     }
-    if (this.RequestlistForm.get("Hras").value.length > 0){
+    if(this.RequestlistForm.get("Hras").value.includes('none')) {
+      this.SearchRequest.hras = 'none';
+    }
+     else {
+      this.SearchRequest.hras = '';
+    }
+    if (this.RequestlistForm.get("Hras").value.length > 0 && !this.RequestlistForm.get("Hras").value.includes('none')){
       this.RequestlistForm.get("Hras").value.forEach(item =>{
 
         this.SearchRequest[item.key] = item.value.toString()
       })
     }
-    if (this.RequestlistForm.get("TaskSpecific").value.length > 0){
+    if(this.RequestlistForm.get("TaskSpecific").value.includes('none')) {
+      this.SearchRequest.taskSpecificPPE = 'none';
+    }
+     else {
+      this.SearchRequest.taskSpecificPPE = '';
+    }
+    if (this.RequestlistForm.get("TaskSpecific").value.length > 0 && !this.RequestlistForm.get("TaskSpecific").value.includes('none')){
       this.RequestlistForm.get("TaskSpecific").value.forEach(item =>{
         console.log("item", item)
         this.SearchRequest[item.key] = item.value.toString()
@@ -1143,6 +1177,50 @@ export class ListRequestComponent implements OnInit {
     this.route.navigateByUrl('/user/new-request');
   }
 
+  
+  isValidDateFormat(date: string | null | undefined): boolean {
+    if (!date) return false; // Handle null, undefined, and empty string
+    return /^\d{4}-\d{2}-\d{2}$/.test(date) && date !== '0000-00-00';
+  }
+  
+  getSelectedDelete() {
+    this.selected.forEach((x) => {
+        this.selectedRequestIds.push(x['id']);
+    });
+    let title = 'Delete Multiple Request';
+    let dialogRef: MatDialogRef<any> = this.dialog.open(DeleteOptionComponent, {
+      width: '300px',
+      height: '150px',
+      disableClose: false,
+      data: { title: title, payload: this.selectedRequestIds, type: 'multirequest' },
+    });
+    dialogRef.afterClosed().subscribe((res) => {
+      this.Countresult.length = 0;
+      this.selectedRequestIds.length = 0;
+      this.selectedRequestIds = [];
+      if (this.api == 'SearchRequest') {
+        // console.log("search API");
+        // this.api = 'SearchRequest';
+        // this.items = res[0]['data'];
+        // this.paginationCount = res[1]['count'];
+        const mainValue = this.currentPage - 1;
+        this.startValue = mainValue * 30 + 1;
+        this.search(event);
+        // console.log("NUMMBER", this.currentPage)
+        // console.log("Start Value", this.startValue)
+      }
+      else {
+        const mainValue = this.currentPage - 1;
+        this.startValue = mainValue * 30 + 1;
+        this.getPermits(this.currentPage, this.startValue);
+        console.log("NUMMBER", this.currentPage)
+        console.log("Start Value", this.startValue);
+        // window.location.reload();
+        this.selected.length = 0;
+      }
+    });
+  }
+
   Getselected(event) {
     console.log(event);
     this.selected.forEach((x) => {
@@ -1324,7 +1402,8 @@ export class ListRequestComponent implements OnInit {
         this.RequestlistForm.controls['Keyword'].value;
       this.SearchRequest.PermitNo =
         this.RequestlistForm.controls['Permitnumber'].value;
-      this.SearchRequest.Site_Id = this.RequestlistForm.controls['Site'].value;
+      // this.SearchRequest.Site_Id = this.RequestlistForm.controls['Site'].value;
+      this.SearchRequest.Site_Id = '5';
       this.SearchRequest.Building_Id =
         this.RequestlistForm.controls['Building'].value;
       this.SearchRequest.Sub_Contractor_Id =

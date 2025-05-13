@@ -12,6 +12,9 @@ export class RequestDto {
     Start_Time: string;
     End_Time: string;
     Site_Id: string;
+    night_shift: string;
+    new_date: string;
+    new_end_time: string;
     Building_Id: string;
     Floor_Id: string;
     Room_Nos: string;
@@ -319,10 +322,16 @@ export class EditRequestDto {
     excavation_shoring: any;
     rams_number: any;
     cancel_reason: any;
+    night_shift: any;
+    new_date: any;
+    new_end_time: any;
 }
 
 export class DeleteRequestDto {
     id: string;
+}
+export class DeleteMultiRequestDto {
+    ids: [];
 }
 
 export class UpdateRequestStatusListDto {
@@ -330,6 +339,7 @@ export class UpdateRequestStatusListDto {
     id: string;
     userId: string;
   ConM_initials: any;
+  reject_reason: any;
 }
 
 export class CopyRequestDto {
