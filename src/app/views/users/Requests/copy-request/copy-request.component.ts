@@ -144,7 +144,7 @@ this.userdata=this.jwtauthservice.getUser();
     this.reqservice.CopyRequest(this.CopyRequest).subscribe(res=>
       {
         this.openSnackBar();
-        // window.location.reload();
+        window.location.reload();
       }); 
   }
 
