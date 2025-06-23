@@ -213,7 +213,7 @@
               </mat-form-field>
             </mat-grid-tile>
             </mat-grid-list>
-          <mat-grid-list cols="1" rowHeight="100px">
+          <mat-grid-list cols="2" rowHeight="100px">
             <mat-grid-tile>
               <div class="upload-div-sty uploadBlock">
                 <!-- <input #csvInput hidden="true" type="file" multiple onclick="this.value=null"
@@ -231,18 +231,7 @@
 <button mat-flat-button class="logo-btn-sty" color="primary" (click)="triggerFileInput()">
 Add Files
 </button>
-<div *ngIf="!editform" class="editImagesscroll">
-                  <div *ngFor="let file of images">{{ file.name }}</div>
-                </div>
-                
-                <div *ngIf="editform" class="editImagesscroll">
-                  <div *ngFor="let file of images"class="editImagesClass">
-                    <a [href]="'https://beam.safesiteworks.com/development/m3north/beamapi/services/request/' + file.name" target="_blank">
-                      {{ file.name }}
-                    </a>
-                    <mat-icon class="icons-sty fileremoveclass" (click)="deleteRamsFile(file)">remove</mat-icon>
-                  </div>
-                </div>
+
                 <!-- <span *ngIf="!editform">{{images?.name}}</span>
                 <span *ngIf="editform"><a href="{{'https://beam.safesiteworks.com/navodemoproject/beamapi/services/request/'+images?.name}}" target="_blank">{{images?.name}}</a></span> -->
               </div>
@@ -258,6 +247,20 @@ Add Files
               </div> -->
 
 
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <div *ngIf="!editform" class="editImagesscroll">
+                  <div *ngFor="let file of images">{{ file.name }}</div>
+                </div>
+                
+                <div *ngIf="editform" class="editImagesscroll">
+                  <div *ngFor="let file of images"class="editImagesClass">
+                    <a [href]="'https://beam.safesiteworks.com/development/m3infrastructure/beamapi/services/request/' + file.name" target="_blank">
+                      {{ file.name }}
+                    </a>
+                    <mat-icon class="icons-sty fileremoveclass" (click)="deleteRamsFile(file)">remove</mat-icon>
+                  </div>
+                </div>
             </mat-grid-tile>
 
           </mat-grid-list>
@@ -2329,6 +2332,7 @@ Add Files
                 <div class="hotwork-sub">
                   <label>Are the underground areas cleared from all electrical, piping and other services?</label>
                   <mat-radio-group formControlName="floatLabel79"
+                  (change)="GetselectedNEExcaitem($event.value)"
                     [class.is-invalid]="RequestForm.get('floatLabel79').invalid && RequestForm.get('floatLabel79').touched">
                     <mat-radio-button [value]="1">Yes &nbsp;&nbsp;</mat-radio-button>
                     <mat-radio-button [value]="0">No &nbsp;&nbsp;</mat-radio-button>
@@ -2338,6 +2342,39 @@ Add Files
                       Select
                     </mat-error>
                   </mat-radio-group>
+                </div>
+                <div *ngIf="isnewexcaworkyes">
+                  <mat-grid-list cols="2" rowHeight="150">
+                    <mat-grid-tile>
+                      
+                      <input #csvInput2 hidden type="file" 
+                        (change)="csvInputChange2($event)" accept=".png, .jpeg" />
+                      <div>
+                        <button mat-flat-button class="logo-btn-sty" color="primary" (click)="triggerFileInput1()">
+Digging Picture
+</button>
+                <div  *ngIf="!editform">
+                  <div *ngFor="let file of imagesExca">{{ file.name }}</div>
+                  </div>
+                </div>
+                <div *ngIf="editform">
+                  <div *ngFor="let file of imagesExca" class="editImagesClass">
+                    <a [href]="'https://beam.safesiteworks.com/development/m3infrastructure/beamapi/services/request/' + file.name" target="_blank">
+                      {{ file.name }}
+                    </a>
+                    
+                  </div>
+                </div>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Location</mat-label>
+                <input matInput formControlName="location" placeholder="Location"
+                  [class.is-invalid]="RequestForm.get('location').invalid && RequestForm.get('location').touched" />
+                
+              </mat-form-field>
+            </mat-grid-tile>
+                  </mat-grid-list>
                 </div>
 
 

@@ -127,6 +127,8 @@ export class RequestDto {
     inspection_dates: any;
     marked_drawings: any;
     underground_areas_cleared: any;
+    picture: any;
+    location: any;
     using_cranes_or_lifting: any;
     appointed_person: any;
     vendor_supplier: any;
@@ -293,6 +295,8 @@ export class EditRequestDto {
     inspection_dates: any;
     marked_drawings: any;
     underground_areas_cleared: any;
+    picture: any;
+    location: any;
     using_cranes_or_lifting: any;
     appointed_person: any;
     vendor_supplier: any;
@@ -345,6 +349,7 @@ export class UpdateRequestStatusListDto {
     userId: string;
   ConM_initials: any;
   reject_reason: any;
+  createdTime: any;
 }
 
 export class CopyRequestDto {

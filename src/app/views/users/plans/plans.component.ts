@@ -14,6 +14,7 @@ import { ExportExcelService } from 'app/shared/services/export-excel.service';
 import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { ListPopupComponent } from '../Requests/list-popup/list-popup.component';
 import { config } from 'config';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-plans',
@@ -100,6 +101,7 @@ export class PlansComponent implements OnInit {
     to_date: null,
     start_time: null,
     end_time: null,
+    area: null
   }
   Planslist: any[] = [];
   dataForExcel = [];
@@ -116,8 +118,10 @@ export class PlansComponent implements OnInit {
   constructor(private fb: FormBuilder, private userservices: UserService,
     private route: Router,public ete: ExportExcelService,
     private subcontrservice: SubcontractorService,
+    private requestservice: RequestService,
     private requstservice: RequestService, private http: HttpClient,
-    private dialog: MatDialog, 
+    private dialog: MatDialog,
+    private _snackBar: MatSnackBar, 
     private datePipe: DatePipe) {
     const currentYear = new Date(config.Denmarktz).getFullYear();
     this.minDate = new Date(currentYear - 20, 0, 1);
@@ -138,6 +142,8 @@ export class PlansComponent implements OnInit {
     });
   }
 
+   getRooms: string[] = [];
+
   ngOnInit(): void {
     this.PlanForm = this.fb.group({
       Date: [''],
@@ -153,6 +159,7 @@ export class PlansComponent implements OnInit {
       WorkingDateTo: [''],
       StartTime: [''],
       EndTime: [''],
+      area: [''],
     });
 
     //     var current = new Date();     // get current date    
@@ -160,7 +167,25 @@ export class PlansComponent implements OnInit {
     // var weekend = weekstart + 6;       // end day is the first day + 6 
     // var monday = new Date(current.setDate(weekstart));  
     // var sunday = new Date(current.setDate(weekend));
+        const buildingData = this.requestservice.generateBulidFloorData();
+    this.getRooms = this.extractGroupedZoneData(buildingData);
   }
+
+extractGroupedZoneData(data: any[]): any[] {
+  const result = [];
+  data.forEach(plan => {
+    plan.zoneList.forEach(zone => {
+      result.push({
+        floorName: zone.floorName,
+        zones: zone.zoneSubList.map(sub => ({
+          value: sub.value,
+          className: sub.className
+        }))
+      });
+    });
+  });
+  return result;
+}
 
   // getFloors = [
   //   'LK1',
@@ -263,16 +288,36 @@ export class PlansComponent implements OnInit {
     this.plansDtodata.Building_Id = this.PlanForm.controls["Building"].value;
     this.plansDtodata.Sub_Contractor_Id = this.PlanForm.controls["subContractor"].value;
     this.plansDtodata.Month = this.PlanForm.controls["Month"].value;
-    this.plansDtodata.Date=this.datePipe.transform(this.PlanForm.controls["Date"].value, 'yyyy-MM-dd');
+    const dateValue = this.PlanForm.controls["Date"].value;
+    this.plansDtodata.Date = dateValue ? this.datePipe.transform(dateValue, 'yyyy-MM-dd') : "";
+    // this.plansDtodata.Date=this.datePipe.transform(this.PlanForm.controls["Date"].value, 'yyyy-MM-dd');
     this.plansDtodata.Year=this.PlanForm.controls["Year"].value;
     this.plansDtodata.Week=this.PlanForm.controls["Weekno"].value;
     this.plansDtodata.Room_Type=this.PlanForm.controls["level"].value;
 
-    this.plansDtodata.from_date = this.datePipe.transform(this.PlanForm.controls["WorkingDateFrom"].value, 'yyyy-MM-dd');
-    this.plansDtodata.to_date = this.datePipe.transform(this.PlanForm.controls["WorkingDateTo"].value, 'yyyy-MM-dd');
+    // this.plansDtodata.from_date = this.datePipe.transform(this.PlanForm.controls["WorkingDateFrom"].value, 'yyyy-MM-dd');
+    // this.plansDtodata.to_date = this.datePipe.transform(this.PlanForm.controls["WorkingDateTo"].value, 'yyyy-MM-dd');
+    const fromDateValue = this.PlanForm.controls["WorkingDateFrom"].value;
+const toDateValue = this.PlanForm.controls["WorkingDateTo"].value;
+
+this.plansDtodata.from_date = fromDateValue ? this.datePipe.transform(fromDateValue, 'yyyy-MM-dd') : "";
+this.plansDtodata.to_date = toDateValue ? this.datePipe.transform(toDateValue, 'yyyy-MM-dd') : "";
+
 
     this.plansDtodata.start_time = this.PlanForm.controls["StartTime"].value;
     this.plansDtodata.end_time = this.PlanForm.controls["EndTime"].value;
+    // this.plansDtodata.Area = this.PlanForm.controls["Area"].value.toString();
+//     const statusArray = this.PlanForm.controls['area'].value;
+// this.plansDtodata.area = statusArray.map((val: string) => `'${val}'`).join(',');
+ const areaValue = this.PlanForm.controls['area'].value;
+const areasArray = Array.isArray(areaValue) ? areaValue : [areaValue]; 
+
+const formattedArea = areasArray
+  .filter(val => val !== null && val !== undefined && val !== '') 
+  .map((val: string) => `${val}`)
+  .join('|');
+
+this.plansDtodata.area = formattedArea || ""; 
 
 
     //  this.plansDtodata.Plans_Id=this.PlanForm.controls["Plantype"].value;
@@ -308,10 +353,22 @@ export class PlansComponent implements OnInit {
     // }
   }
 
+    openSnackBar(msg) {
+    this._snackBar.open(msg, "Close", {
+      duration: 2000,
+    });
+  }
+
   GetRequestData(searchreq) {
     this.requstservice.GetPlans(this.plansDtodata).subscribe(res => {
       console.log(res, "search list");
-      this.Planslist = res[0]["data"];
+    if (Array.isArray(res)) {
+    this.Planslist = res[0]["data"];
+  } else {
+    console.log("errorCase", res.message);
+    this.openSnackBar(`${res.message}`);
+    this.Planslist = [];
+  }
     });
   }
 

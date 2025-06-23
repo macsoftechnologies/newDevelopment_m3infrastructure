@@ -183,7 +183,9 @@ export class StatusChangeDialogComponent implements OnInit {
     rams_number: null,
     night_shift: null,
     new_date: null,
-    new_end_time: null
+    new_end_time: null,
+    picture: null,
+    location: null,
   };
   images: any[] = [];
   base64Images: any[] = [];
@@ -425,6 +427,8 @@ export class StatusChangeDialogComponent implements OnInit {
     this.updaterequestdata.inspection_dates = this.data["payload"]["inspection_dates"];
     this.updaterequestdata.marked_drawings = this.data["payload"]["marked_drawings"];
     this.updaterequestdata.underground_areas_cleared = this.data["payload"]["underground_areas_cleared"];
+    this.updaterequestdata.picture = this.data["payload"]["picture"];
+    this.updaterequestdata.location = this.data["payload"]["location"];
 
     // using_cranes_or_lifting
 
